@@ -63,6 +63,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -82,6 +83,9 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.nostra13.universalimageloader.utils.StorageUtils;
+
+import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.UpdateManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -174,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
     private SearchImgLoadingListener searchImgLoadingListener;
     private int iconMarginConstant;
     private int iconMarginLandscape;
+    private int iconConstantSpecialCase;
     private boolean phone;
     private DateFormat dateFormat;
 
@@ -284,6 +289,8 @@ public class MainActivity extends AppCompatActivity {
             // on first time display view for first nav item
             displayView(1);
 
+            // Use hockey module to check for updates
+            checkForUpdates();
 
             // Universal Loader options and configuration.
             DisplayImageOptions options = new DisplayImageOptions.Builder()
@@ -406,10 +413,16 @@ public class MainActivity extends AppCompatActivity {
 
         currOrientation = getResources().getConfiguration().orientation;
 
-
+        iconConstantSpecialCase = 0;
         if (phone) {
             iconMarginConstant = 0;
             iconMarginLandscape = 0;
+            DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+            int width = displayMetrics.widthPixels;
+            int height = displayMetrics.heightPixels;
+            if (width <= 480 && height <= 800)
+                iconConstantSpecialCase = -70;
+
         } else {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 iconMarginConstant = 232;
@@ -465,6 +478,40 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    /**
+     * This method is fired when the activity is paused.
+     * For example if we minimize our app.
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        UpdateManager.unregister();
+    }
+
+    /**
+     * This method is fired when the activity is resumed.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkForCrashes();
+    }
+
+    /**
+     * This method is used by the hockey library to check for crashes.
+     */
+    private void checkForCrashes() {
+        CrashManager.register(this, MovieDB.appId);
+    }
+
+    /**
+     * This method is used by the hockey library to check for updates.
+     */
+    private void checkForUpdates() {
+        // Remove this for store / production builds!
+        UpdateManager.register(this, MovieDB.appId);
     }
 
     /**
@@ -1930,6 +1977,10 @@ public class MainActivity extends AppCompatActivity {
 
     public int getIconMarginLandscape() {
         return iconMarginLandscape;
+    }
+
+    public int getIconConstantSpecialCase() {
+        return iconConstantSpecialCase;
     }
 
     public DateFormat getDateFormat() {
