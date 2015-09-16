@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright 2015 sourcestream GmbH
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources>
+    <!-- Main Config -->
+    <string name="app_name">Movie DB</string>
+
+    <!-- MovieList Controller -->
+    <string name="noConnection">Unable to fetch data from server.</string>
+    <string name="loadingMore">Loading more…</string>
+
+    <!-- MovieDetails Controller -->
+    <string name="min">min.</string>
+    <string name="voteCount">votes</string>
+    <string name="noOverview">Sorry, currently there is no overview for this movie.</string>
+    <string name="noBiography">Sorry, currently there is no biography for this actor.</string>
+    <string name="relatedMovies">RELATED MOVIES</string>
+    <string name="relatedTV">RELATED TV SHOWS</string>
+
+    <!-- CastDetails -->
+    <string name="alsoKnownAs">Also known as:</string>
+    <string name="knownFor">KNOWN FOR</string>
+    <string name="showMore">SHOW ALL</string>
+
+    <!-- TVDetails -->
+    <string name="type">Type:</string>
+    <string name="firstAirDate">First air date:</string>
+    <string name="lastAirDate">Last air date:</string>
+    <string name="numberOfEpisodes">Number of episodes:</string>
+    <string name="numberOfSeasons">Number of seasons:</string>
+
+    <!-- About View -->
+    <string name="aboutApp" translatable="false">MOVIE DB</string>
+    <string name="TMDbText" translatable="false">This product uses the TMDb API but is not endorsed or certified by TMDb.</string>
+    <string name="TMDbLegalNotice" translatable="false">TMDb respects the rights of copyright holders and publishers and requires all users to confirm they own the copyright or have permission from the copyright holder to upload content. We comply with the Digital Millennium Copyright Act (DMCA) and expeditiously remove content when properly notified, unless it reasonably appears to us that the content does not infringe upon copyright. Please note, however, that under Section 512(f) any person who knowingly materially misrepresents that material or activity is a copyright infringement may be subject to liability for damages. You should educate yourself as to whether content does, in fact infringe upon your copyright, or whether, for instance "fair use" under 17 U.S.C. §107 applies. If you are unsure whether the content you are reporting is infringing your legal rights, you may wish to seek legal guidance. Keep in mind that submitting intentionally misleading reports of infringement may be punishable under the Digital Millennium Copyright Act (DMCA) in the United States or similar laws in other countries.\n\nFor claims of copyright infringement, please contact our designated agent under the Digital Millennium Copyright Act:\nCopyright Agent at: 489 S. El Camino Real, San Mateo, CA, 94402.</string>
+    <string name="aboutSupport">Support:\u0020</string>
+    <string name="aboutSupportMail" translatable="false">info@sourcestream.de</string>
+    <string name="aboutSourcestream" translatable="false">sourcestream GmbH</string>
+    <string name="aboutWebSite" translatable="false">www.sourcestream.de</string>
+    <string name="MailSubject">Subject</string>
+    <string name="MailDesc">Describe your question here.</string>
+    <string name="MailSend">Send E-mail Using:</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Movies</item>
+        <item>TV shows</item>
+        <item>Genres</item>
+        <item>About</item>
+    </string-array>
+
+    <!-- ActionBar titles -->
+    <string name="moviesTitle">Movies</string>
+    <string name="tvTitle">TV shows</string>
+    <string name="genresTitle">Genres</string>
+
+    <!-- Movies tabs -->
+    <string-array name="moviesTabs">
+        <item>Upcoming</item>
+        <item>Now Playing</item>
+        <item>Popular</item>
+        <item>Top Rated</item>
+    </string-array>
+
+    <!-- TV tabs -->
+    <string-array name="tvTabs">
+        <item>On the Air</item>
+        <item>Airing Today</item>
+        <item>Popular</item>
+        <item>Top Rated</item>
+    </string-array>
+
+    <!-- detailTabs tabs -->
+    <string-array name="detailTabs">
+        <item>Info</item>
+        <item>Cast</item>
+        <item>Overview</item>
+    </string-array>
+
+    <!-- Cast detailTabs tabs -->
+    <string-array name="castDetailTabs">
+        <item>Info</item>
+        <item>Credits</item>
+        <item>Biography</item>
+    </string-array>
+
+    <!-- Search -->
+    <string name="search_title">Search</string>
+    <string name="search_hint">Search…</string>
+    <string name="nomoreresults">No more results.</string>
+    <string name="noResults">Sorry, no results found.</string>
+    <string name="timeout">Connection timed out, please try again</string>
+
+
+</resources>
