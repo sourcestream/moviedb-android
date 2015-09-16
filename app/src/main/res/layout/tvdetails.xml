@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
    Copyright 2015 sourcestream GmbH
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -53,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true" />
 
-        <android.support.wearable.view.CircledImageView
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/moreIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,33 +60,30 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="290dp"
             android:adjustViewBounds="false"
-            android:src="@drawable/ic_more_vert_white_36dp"
-            app:circle_color="@color/movieDetailsMoreIconBackground"
-            app:circle_radius="28dp" />
+            android:scaleType="center"
+            android:src="@drawable/ic_more_vert_white_36dp" />
 
-        <android.support.wearable.view.CircledImageView
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/homeIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="23dp"
             android:layout_marginTop="233dp"
             android:adjustViewBounds="false"
-            android:src="@drawable/ic_home_white_24dp"
-            app:circle_color="@color/movieDetailsMoreIconBackground"
-            app:circle_radius="20dp" />
+            android:scaleType="center"
+            android:src="@drawable/ic_home_white_24dp" />
 
-        <android.support.wearable.view.CircledImageView
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/galleryIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="23dp"
             android:layout_marginTop="177.3dp"
             android:adjustViewBounds="false"
-            android:src="@drawable/ic_photo_camera_white_24dp"
-            app:circle_color="@color/movieDetailsMoreIconBackground"
-            app:circle_radius="20dp" />
+            android:scaleType="center"
+            android:src="@drawable/ic_photo_camera_white_24dp" />
     </RelativeLayout>
 
 </FrameLayout>

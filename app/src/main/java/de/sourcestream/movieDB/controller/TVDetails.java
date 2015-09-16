@@ -27,10 +27,10 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.wearable.view.CircledImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,11 +95,11 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
 
     private ProgressBar spinner;
     private int moreIconCheck;
-    private CircledImageView moreIcon;
-    private CircledImageView homeIcon;
+    private FloatingActionButton moreIcon;
+    private FloatingActionButton homeIcon;
     private int homeIconCheck;
     private int galleryIconCheck;
-    private CircledImageView galleryIcon;
+    private FloatingActionButton galleryIcon;
     private ArrayList<String> galleryList;
 
     private onGalleryIconClick onGalleryIconClick;
@@ -138,6 +138,7 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
     private JSONAsyncTask request;
     private int iconMarginConstant;
     private int iconMarginLandscape;
+    private int iconConstantSpecialCase;
     private float scale;
     private boolean phone;
     private int hideThreshold;
@@ -198,15 +199,15 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
             rootView = inflater.inflate(R.layout.tvdetails, container, false);
             spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);
 
-            homeIcon = (CircledImageView) rootView.findViewById(R.id.homeIcon);
+            homeIcon = (FloatingActionButton) rootView.findViewById(R.id.homeIcon);
             homeIcon.bringToFront();
             homeIcon.setVisibility(View.INVISIBLE);
-            galleryIcon = (CircledImageView) rootView.findViewById(R.id.galleryIcon);
+            galleryIcon = (FloatingActionButton) rootView.findViewById(R.id.galleryIcon);
             galleryIcon.bringToFront();
             galleryIcon.setVisibility(View.INVISIBLE);
 
             // Highest Z-index has to be declared last
-            moreIcon = (CircledImageView) rootView.findViewById(R.id.moreIcon);
+            moreIcon = (FloatingActionButton) rootView.findViewById(R.id.moreIcon);
             moreIcon.bringToFront();
         }
         moreIcon.setOnClickListener(onMoreIconClick);
@@ -312,6 +313,7 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
 
         iconMarginConstant = activity.getIconMarginConstant();
         iconMarginLandscape = activity.getIconMarginLandscape();
+        iconConstantSpecialCase = activity.getIconConstantSpecialCase();
 
         Tracker t = ((MovieDB) activity.getApplication()).getTracker();
         t.setScreenName("TVDetails - " + getTitle());
@@ -353,6 +355,9 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
                     JSONObject jsonData = new JSONObject(sb.toString());
 
                     // is added checks if we are still on the same view, if we don't do this check the program will crash
+                    while (tvDetailsInfo == null) {
+                        Thread.sleep(200);
+                    }
                     if (isAdded() && tvDetailsInfo != null) {
                         // Backdrop path
                         if (!jsonData.getString("backdrop_path").equals("null") && !jsonData.getString("backdrop_path").isEmpty()) {
@@ -659,6 +664,8 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
             } catch (ParseException | IOException | JSONException e) {
                 if (conn != null)
                     conn.disconnect();
+            } catch (InterruptedException e) {
+                
             } finally {
                 if (conn != null)
                     conn.disconnect();
@@ -1259,6 +1266,10 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
             moreIcon.clearAnimation();
             updateDownPos();
             moreIcon.setVisibility(View.VISIBLE);
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) moreIcon.getLayoutParams();
+            layoutParams.width = RelativeLayout.LayoutParams.WRAP_CONTENT;
+            layoutParams.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
+            moreIcon.setLayoutParams(layoutParams);
         }
 
         @Override
@@ -1282,11 +1293,11 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
         lp1.addRule(RelativeLayout.ALIGN_PARENT_END);
         lp2.addRule(RelativeLayout.ALIGN_PARENT_END);
 
-        lp.setMargins(0, (int) (scale * (496 + iconMarginConstant - iconMarginLandscape) + 0.5f), (int) (scale * 15 + 0.5f), 0);
+        lp.setMargins(0, (int) (scale * (496 + iconMarginConstant - iconMarginLandscape + iconConstantSpecialCase) + 0.5f), (int) (scale * 15 + 0.5f), 0);
         moreIcon.setLayoutParams(lp);
-        lp1.setMargins(0, (int) (scale * (439 + iconMarginConstant - iconMarginLandscape) + 0.5f), (int) (scale * 23 + 0.5f), 0);
+        lp1.setMargins(0, (int) (scale * (439 + iconMarginConstant - iconMarginLandscape + iconConstantSpecialCase) + 0.5f), (int) (scale * 23 + 0.5f), 0);
         homeIcon.setLayoutParams(lp1);
-        lp2.setMargins(0, (int) (scale * (383.3 + iconMarginConstant - iconMarginLandscape) + 0.5f), (int) (scale * 23 + 0.5f), 0);
+        lp2.setMargins(0, (int) (scale * (383.3 + iconMarginConstant - iconMarginLandscape + iconConstantSpecialCase) + 0.5f), (int) (scale * 23 + 0.5f), 0);
         galleryIcon.setLayoutParams(lp2);
     }
 
@@ -1336,7 +1347,7 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
         if (iconMarginLandscape == 300)
             downAnimation = new TranslateAnimation(0, 0, 0, -scale * 150 + 0.5f + tvDetailsInfoScrollY);
         else
-            downAnimation = new TranslateAnimation(0, 0, 0, scale * 150 + 0.5f + tvDetailsInfoScrollY);
+            downAnimation = new TranslateAnimation(0, 0, 0, scale * (150 + iconConstantSpecialCase) + 0.5f + tvDetailsInfoScrollY);
         downAnimation.setDuration(500);
         downAnimation.setFillAfter(false);
         downAnimation.setAnimationListener(downAnimationListener);
@@ -1352,7 +1363,7 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
         if (iconMarginLandscape == 300)
             upAnimation = new TranslateAnimation(0, 0, 0, scale * 150 + 0.5f - tvDetailsInfoScrollY - dy);
         else
-            upAnimation = new TranslateAnimation(0, 0, 0, -scale * 150 + 0.5f - tvDetailsInfoScrollY - dy);
+            upAnimation = new TranslateAnimation(0, 0, 0, -scale * (150 + iconConstantSpecialCase) + 0.5f - tvDetailsInfoScrollY - dy);
         upAnimation.setDuration(500);
         upAnimation.setFillAfter(false);
         upAnimation.setAnimationListener(upAnimationListener);
@@ -1380,9 +1391,9 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
      * @param homeIcon    the first icon
      * @param galleryIcon the second icon
      */
-    public void adjustIconsPos(CircledImageView homeIcon, CircledImageView galleryIcon) {
+    public void adjustIconsPos(FloatingActionButton homeIcon, FloatingActionButton galleryIcon) {
         int iconCount[] = {homeIconCheck, galleryIconCheck};
-        ArrayList<CircledImageView> circledImageViews = new ArrayList<>();
+        ArrayList<FloatingActionButton> circledImageViews = new ArrayList<>();
         circledImageViews.add(homeIcon);
         circledImageViews.add(galleryIcon);
 
@@ -1390,7 +1401,7 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
             if (iconCount[i] == 1)
                 circledImageViews.get(circledImageViews.size() - 1).setVisibility(View.INVISIBLE);
             else {
-                CircledImageView temp = circledImageViews.get(0);
+                FloatingActionButton temp = circledImageViews.get(0);
                 switch (i) {
                     case 0:
                         temp.setOnClickListener(onHomeIconClick);
@@ -1418,13 +1429,13 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
      * @param homeIcon    first icon
      * @param galleryIcon second icon
      */
-    public void showHideImages(int visibility, CircledImageView homeIcon, CircledImageView galleryIcon) {
+    public void showHideImages(int visibility, FloatingActionButton homeIcon, FloatingActionButton galleryIcon) {
         float dy[] = {0.7f, 56.7f};
         float infoTabDy[] = {-2.4f, 53.5f};
         int currDy = 0;
         int delay = 100;
         int iconCount[] = {homeIconCheck, galleryIconCheck};
-        ArrayList<CircledImageView> circledImageViews = new ArrayList<>();
+        ArrayList<FloatingActionButton> circledImageViews = new ArrayList<>();
         circledImageViews.add(homeIcon);
         circledImageViews.add(galleryIcon);
 
@@ -1444,7 +1455,7 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
             if (iconCount[i] == 1)
                 circledImageViews.get(circledImageViews.size() - 1).setVisibility(View.INVISIBLE);
             else {
-                CircledImageView temp = circledImageViews.get(0);
+                FloatingActionButton temp = circledImageViews.get(0);
                 if (visibility == View.VISIBLE) {
                     if (currPos == 0)
                         createIconUpAnimation(infoTabDy[currDy], delay);
@@ -1556,9 +1567,9 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
         lp1.addRule(RelativeLayout.ALIGN_PARENT_END);
         lp3.addRule(RelativeLayout.ALIGN_PARENT_END);
 
-        lp1.setMargins(0, (int) (scale * (506 + iconMarginConstant - iconMarginLandscape) + 0.5f), (int) (scale * 23 + 0.5f), 0);
+        lp1.setMargins(0, (int) (scale * (506 + iconMarginConstant - iconMarginLandscape + iconConstantSpecialCase) + 0.5f), (int) (scale * 23 + 0.5f), 0);
         homeIcon.setLayoutParams(lp1);
-        lp3.setMargins(0, (int) (scale * (506 + iconMarginConstant - iconMarginLandscape) + 0.5f), (int) (scale * 23 + 0.5f), 0);
+        lp3.setMargins(0, (int) (scale * (506 + iconMarginConstant - iconMarginLandscape + iconConstantSpecialCase) + 0.5f), (int) (scale * 23 + 0.5f), 0);
         galleryIcon.setLayoutParams(lp3);
     }
 
@@ -1571,9 +1582,9 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
         lp1.addRule(RelativeLayout.ALIGN_PARENT_END);
         lp3.addRule(RelativeLayout.ALIGN_PARENT_END);
 
-        lp1.setMargins(0, (int) (scale * (439 + iconMarginConstant - iconMarginLandscape) + 0.5f), (int) (scale * 23 + 0.5f), 0);
+        lp1.setMargins(0, (int) (scale * (439 + iconMarginConstant - iconMarginLandscape + iconConstantSpecialCase) + 0.5f), (int) (scale * 23 + 0.5f), 0);
         homeIcon.setLayoutParams(lp1);
-        lp3.setMargins(0, (int) (scale * (383.3 + iconMarginConstant - iconMarginLandscape) + 0.5f), (int) (scale * 23 + 0.5f), 0);
+        lp3.setMargins(0, (int) (scale * (383.3 + iconMarginConstant - iconMarginLandscape + iconConstantSpecialCase) + 0.5f), (int) (scale * 23 + 0.5f), 0);
         galleryIcon.setLayoutParams(lp3);
     }
 
