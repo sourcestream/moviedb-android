@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright 2015 sourcestream GmbH
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources>
+
+    <string name="app_name">Movie DB</string>
+
+    <!-- MovieList Controller -->
+    <string name="noConnection">Не мога да изтегля информация от сървъра.</string>
+    <string name="loadingMore">Зареждане на още…</string>
+
+    <!-- MovieDetails Controller -->
+    <string name="min">мин.</string>
+    <string name="voteCount">гласа</string>
+    <string name="noOverview">Съжаляваме, в момента няма резюме за този филм.</string>
+    <string name="noBiography">Съжаляваме, в момента няма биография за този актьор.</string>
+    <string name="relatedMovies">ПОДОБНИ ФИЛМИ</string>
+    <string name="relatedTV">ПОДОБНИ СЕРИАЛИ</string>
+
+    <!-- CastDetails -->
+    <string name="alsoKnownAs">Известен също като:</string>
+    <string name="knownFor">УЧАСТВАЛ В</string>
+    <string name="showMore">ПОКАЖИ ВСИЧКИ</string>
+
+    <!-- TVDetails -->
+    <string name="type">Тип:</string>
+    <string name="firstAirDate">Първа дата на излизане:</string>
+    <string name="lastAirDate">Последна дата на излизане:</string>
+    <string name="numberOfEpisodes">Брой епизоди:</string>
+    <string name="numberOfSeasons">Брой сезони:</string>
+
+    <!-- About View -->
+    <string name="aboutSupport">Поддръжка:\u0020</string>
+    <string name="MailSubject">Тема</string>
+    <string name="MailDesc">Опишете вашият въпрос тук.</string>
+    <string name="MailSend">Изпратете Е-mail чрез:</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Филми</item>
+        <item>Сериали</item>
+        <item>Жанрове</item>
+        <item>За програмата</item>
+    </string-array>
+
+    <!-- ActionBar titles -->
+    <string name="moviesTitle">Филми</string>
+    <string name="tvTitle">Сериали</string>
+    <string name="genresTitle">Жанрове</string>
+
+    <!-- Movies tabs -->
+    <string-array name="moviesTabs">
+        <item>Предстоящи</item>
+        <item>В кината</item>
+        <item>Популярни</item>
+        <item>Най-високо оценявани</item>
+    </string-array>
+
+    <!-- TV tabs -->
+    <string-array name="tvTabs">
+        <item>В ефир</item>
+        <item>Предстоящи днес</item>
+        <item>Популярни</item>
+        <item>Най-високо оценявани</item>
+    </string-array>
+
+    <!-- detailTabs tabs -->
+    <string-array name="detailTabs">
+        <item>Инфо</item>
+        <item>В ролите на</item>
+        <item>Резюме</item>
+    </string-array>
+
+    <!-- Cast detailTabs tabs -->
+    <string-array name="castDetailTabs">
+        <item>Инфо</item>
+        <item>Участия</item>
+        <item>Биография</item>
+    </string-array>
+
+
+    <!-- Search -->
+    <string name="search_title">Търси</string>
+    <string name="search_hint">Търси…</string>
+    <string name="nomoreresults">Няма повече резултати.</string>
+    <string name="noResults">Съжалявам, не бяха намерени никакви резултати.</string>
+    <string name="timeout">Връзката изтече, моля опитайте пак</string>
+
+</resources>
