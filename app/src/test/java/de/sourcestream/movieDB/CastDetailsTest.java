@@ -18,8 +18,8 @@ package de.sourcestream.movieDB;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
+import android.support.wearable.view.CircledImageView;
 import android.test.InstrumentationTestCase;
 import android.view.View;
 
@@ -42,9 +42,9 @@ public class CastDetailsTest extends InstrumentationTestCase {
     private MainActivity activity;
     private CastDetails castDetailsFragment;
     private View castDetailsFragmentView;
-    private FloatingActionButton moreIcon;
-    private FloatingActionButton homeIcon;
-    private FloatingActionButton galleryIcon;
+    private CircledImageView moreIcon;
+    private CircledImageView homeIcon;
+    private CircledImageView galleryIcon;
 
 
     /**
@@ -62,9 +62,9 @@ public class CastDetailsTest extends InstrumentationTestCase {
         manager.beginTransaction().add(castDetailsFragment, FRAGMENT_TAG).commit();
 
         castDetailsFragmentView = castDetailsFragment.getView();
-        moreIcon = (FloatingActionButton) castDetailsFragmentView.findViewById(R.id.moreIcon);
-        homeIcon = (FloatingActionButton) castDetailsFragmentView.findViewById(R.id.homeIcon);
-        galleryIcon = (FloatingActionButton) castDetailsFragmentView.findViewById(R.id.galleryIcon);
+        moreIcon = (CircledImageView) castDetailsFragmentView.findViewById(R.id.moreIcon);
+        homeIcon = (CircledImageView) castDetailsFragmentView.findViewById(R.id.homeIcon);
+        galleryIcon = (CircledImageView) castDetailsFragmentView.findViewById(R.id.galleryIcon);
 
     }
 
