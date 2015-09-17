@@ -260,14 +260,14 @@
                 <GridView
                     android:id="@+id/tvDetailsSimilarGrid"
                     android:layout_width="match_parent"
-                    android:layout_height="460dp"
+                    android:layout_height="430dp"
                     android:layout_marginLeft="-2dp"
                     android:layout_marginRight="-2dp"
-                    android:columnWidth="112dp"
+                    android:columnWidth="104dp"
                     android:listSelector="@android:color/transparent"
                     android:numColumns="3"
                     android:stretchMode="spacingWidthUniform"
-                    android:verticalSpacing="7dp"
+                    android:verticalSpacing="2dp"
                     tools:listitem="@layout/similar_row" />
 
             </LinearLayout>

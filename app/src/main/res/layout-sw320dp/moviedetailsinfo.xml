@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
    Copyright 2015 sourcestream GmbH
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +16,7 @@
 <de.sourcestream.movieDB.view.ObservableParallaxScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tvdetailsinfo"
+    android:id="@+id/moviedetailsinfo"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:overScrollMode="never">
@@ -64,12 +63,25 @@
             app:circle_radius="20dp" />
 
         <android.support.wearable.view.CircledImageView
-            android:id="@+id/galleryIcon"
+            android:id="@+id/trailerIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/homeIcon"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="15.5dp"
+            android:layout_marginRight="23dp"
+            android:adjustViewBounds="false"
+            android:src="@drawable/ic_videocam_white_24dp"
+            app:circle_color="@color/movieDetailsMoreIconBackground"
+            app:circle_radius="20dp" />
+
+        <android.support.wearable.view.CircledImageView
+            android:id="@+id/galleryIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/trailerIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="15dp"
             android:layout_marginRight="23dp"
             android:adjustViewBounds="false"
             android:src="@drawable/ic_photo_camera_white_24dp"
@@ -140,62 +152,38 @@
                     android:textColor="@color/movieDetailsInfoTitle"
                     android:textSize="20sp" />
 
+                <!-- Date text view -->
+                <TextView
+                    android:id="@+id/releaseDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:textColor="@color/movieDetailsInfoData" />
 
                 <!-- Status text view -->
                 <TextView
                     android:id="@+id/status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="11dp"
+                    android:layout_marginTop="5dp"
                     android:textColor="@color/movieDetailsInfoData" />
 
-                <!-- Type text view -->
+                <!-- Runtime text view -->
                 <TextView
-                    android:id="@+id/type"
+                    android:id="@+id/runtime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/movieDetailsInfoData" />
 
-                <!-- Episode runTime text view -->
+                <!-- Tagline text view -->
                 <TextView
-                    android:id="@+id/episodeRuntime"
+                    android:id="@+id/tagline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="@color/movieDetailsInfoData" />
-
-                <!-- Number of episodes text view -->
-                <TextView
-                    android:id="@+id/numberOfEpisodes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textColor="@color/movieDetailsInfoData" />
-
-                <!-- Number of seasons text view -->
-                <TextView
-                    android:id="@+id/numberOfSeasons"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textColor="@color/movieDetailsInfoData" />
-
-                <!-- First air text view -->
-                <TextView
-                    android:id="@+id/firstAirDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textColor="@color/movieDetailsInfoData" />
-
-                <!-- Last air date text view -->
-                <TextView
-                    android:id="@+id/lastAirDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textColor="@color/movieDetailsInfoData" />
+                    android:textColor="@color/movieDetailsInfoData"
+                    android:textStyle="italic" />
 
                 <!-- Countries begin here -->
                 <TextView
@@ -231,6 +219,7 @@
             </LinearLayout>
         </LinearLayout>
 
+
         <LinearLayout
             android:id="@+id/similarHolder"
             android:layout_width="match_parent"
@@ -254,22 +243,21 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="20dp"
                     android:paddingLeft="15dp"
-                    android:text="@string/relatedTV"
+                    android:text="@string/relatedMovies"
                     android:textColor="@color/black" />
 
                 <GridView
-                    android:id="@+id/tvDetailsSimilarGrid"
+                    android:id="@+id/movieDetailsSimilarGrid"
                     android:layout_width="match_parent"
-                    android:layout_height="460dp"
+                    android:layout_height="430dp"
                     android:layout_marginLeft="-2dp"
                     android:layout_marginRight="-2dp"
-                    android:columnWidth="112dp"
+                    android:columnWidth="104dp"
                     android:listSelector="@android:color/transparent"
                     android:numColumns="3"
                     android:stretchMode="spacingWidthUniform"
-                    android:verticalSpacing="7dp"
+                    android:verticalSpacing="2dp"
                     tools:listitem="@layout/similar_row" />
-
             </LinearLayout>
         </LinearLayout>
 
