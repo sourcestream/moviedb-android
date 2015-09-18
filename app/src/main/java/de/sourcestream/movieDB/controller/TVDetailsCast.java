@@ -71,6 +71,7 @@ public class TVDetailsCast extends Fragment implements AdapterView.OnItemClickLi
         super.onCreateView(inflater, container, savedInstanceState);
 
         View rootView = inflater.inflate(R.layout.moviedetailscast, container, false);
+        listView = (ObservableListView) rootView.findViewById(R.id.castList);
         activity = ((MainActivity) getActivity());
         return rootView;
     }
@@ -78,7 +79,6 @@ public class TVDetailsCast extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        listView = (ObservableListView) getActivity().findViewById(R.id.castList);
 
         if (listView != null) {
             listView.setScrollViewCallbacks(activity.getTvDetailsFragment());

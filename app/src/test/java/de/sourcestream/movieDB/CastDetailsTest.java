@@ -32,6 +32,8 @@ import org.robolectric.annotation.Config;
 
 import de.sourcestream.movieDB.adapter.CastDetailsSlideAdapter;
 import de.sourcestream.movieDB.controller.CastDetails;
+import de.sourcestream.movieDB.controller.CastDetailsBiography;
+import de.sourcestream.movieDB.controller.CastDetailsCredits;
 import de.sourcestream.movieDB.controller.CastDetailsInfo;
 
 @RunWith(RobolectricGradleTestRunner.class)
@@ -103,11 +105,58 @@ public class CastDetailsTest extends InstrumentationTestCase {
         FragmentManager manager = activity.getFragmentManager();
         manager.beginTransaction().add(castDetailsInfo, "castDetailsInfo").commit();
 
-     //   CastDetailsInfo castDetailsInfo = (CastDetailsInfo) adapter.getItem(0);
+        //   CastDetailsInfo castDetailsInfo = (CastDetailsInfo) adapter.getItem(0);
         assertNotNull("cast details info is null", castDetailsInfo);
-        assertNotNull("cast details info rootView is null", castDetailsInfo.getRootView());
 
+        View castDetailsInfoRoot = castDetailsInfo.getRootView();
+        assertNotNull("cast details info rootView is null", castDetailsInfoRoot);
+
+        assertNotNull("name view is null", castDetailsInfoRoot.findViewById(R.id.name));
+        assertNotNull("profilePath is null", castDetailsInfoRoot.findViewById(R.id.profilePath));
+        assertNotNull("birthInfo is null", castDetailsInfoRoot.findViewById(R.id.birthInfo));
+        assertNotNull("alsoKnownAs is null", castDetailsInfoRoot.findViewById(R.id.alsoKnownAs));
+        assertNotNull("scrollView is null", castDetailsInfoRoot.findViewById(R.id.castdetailsinfo));
+        assertNotNull("castDetailsKnownGrid is null", castDetailsInfoRoot.findViewById(R.id.castDetailsKnownGrid));
+        assertNotNull("knownHolder is null", castDetailsInfoRoot.findViewById(R.id.knownHolder));
+        assertNotNull("showMoreButton is null", castDetailsInfoRoot.findViewById(R.id.showMoreButton));
+        assertNotNull("detailsLayout is null", castDetailsInfoRoot.findViewById(R.id.detailsLayout));
+
+        CircledImageView moreIcon = (CircledImageView) castDetailsInfoRoot.findViewById(R.id.moreIcon);
+        CircledImageView homeIcon = (CircledImageView) castDetailsInfoRoot.findViewById(R.id.homeIcon);
+        CircledImageView galleryIcon = (CircledImageView) castDetailsInfoRoot.findViewById(R.id.galleryIcon);
+
+        assertNotNull("moreIcon is null", castDetailsInfoRoot.findViewById(R.id.moreIcon));
+        assertNotNull("homeIcon is null", castDetailsInfoRoot.findViewById(R.id.homeIcon));
+        assertNotNull("galleryIcon is null", castDetailsInfoRoot.findViewById(R.id.galleryIcon));
+
+        int expected = View.INVISIBLE;
+        assertEquals("moreIcon visibility is different!", View.VISIBLE, moreIcon.getVisibility());
+        assertEquals("homeIcon visibility is different!", expected, homeIcon.getVisibility());
+        assertEquals("galleryIcon visibility is different!", expected, galleryIcon.getVisibility());
     }
 
+    @Test
+    public void testCastDetailsCredits() throws Exception {
+        CastDetailsCredits castDetailsCredits = new CastDetailsCredits();
+        FragmentManager manager = activity.getFragmentManager();
+        manager.beginTransaction().add(castDetailsCredits, "castDetailsCredits").commit();
 
+        assertNotNull("cast details credits is null", castDetailsCredits);
+        assertNotNull("cast details credits view is null", castDetailsCredits.getView());
+        assertNotNull("cast details credits listView is null", castDetailsCredits.getListView());
+    }
+
+    @Test
+    public void testCastDetailsBiography() throws Exception {
+        CastDetailsBiography castDetailsBiography = new CastDetailsBiography();
+        FragmentManager manager = activity.getFragmentManager();
+        manager.beginTransaction().add(castDetailsBiography, "castDetailsBiography").commit();
+
+        assertNotNull("cast details biography is null", castDetailsBiography);
+        View castDetailsBiographyRoot = castDetailsBiography.getView();
+        assertNotNull("cast details biography is null", castDetailsBiographyRoot);
+        assertNotNull("biographyContent is null", castDetailsBiographyRoot.findViewById(R.id.biographyContent));
+        assertNotNull("scrollView is null", castDetailsBiographyRoot.findViewById(R.id.castdetailsbiography));
+
+    }
 }

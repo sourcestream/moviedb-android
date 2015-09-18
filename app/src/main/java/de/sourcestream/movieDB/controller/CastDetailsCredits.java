@@ -74,6 +74,7 @@ public class CastDetailsCredits extends Fragment implements AdapterView.OnItemCl
         super.onCreateView(inflater, container, savedInstanceState);
 
         View rootView = inflater.inflate(R.layout.castdetailscredits, container, false);
+        listView = (AbsListView) rootView.findViewById(R.id.castdetailscredits);
         activity = ((MainActivity) getActivity());
         return rootView;
     }
@@ -84,8 +85,6 @@ public class CastDetailsCredits extends Fragment implements AdapterView.OnItemCl
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        listView = (AbsListView) getActivity().findViewById(R.id.castdetailscredits);
 
         if (listView != null) {
             listView.setOnItemClickListener(this);
