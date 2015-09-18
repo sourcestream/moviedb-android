@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright 2015 sourcestream GmbH
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<de.sourcestream.movieDB.view.ObservableParallaxScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvdetailsinfo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:overScrollMode="never">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!-- layout_width="fill_parent" else the marginRight won't work -->
+
+
+        <ImageView
+            android:id="@+id/backDropPath"
+            android:layout_width="match_parent"
+            android:layout_height="268dp"
+            android:layout_marginTop="104.9dp"
+            android:background="@drawable/placeholder_backdrop"
+            android:scaleType="centerCrop" />
+
+        <android.support.wearable.view.CircledImageView
+            android:id="@+id/moreIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/backDropPath"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="-28dp"
+            android:adjustViewBounds="false"
+            android:src="@drawable/ic_more_vert_white_36dp"
+            app:circle_color="@color/movieDetailsMoreIconBackground"
+            app:circle_radius="28dp" />
+
+        <android.support.wearable.view.CircledImageView
+            android:id="@+id/homeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/moreIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="44dp"
+            android:layout_marginRight="23dp"
+            android:adjustViewBounds="false"
+            android:src="@drawable/ic_home_white_24dp"
+            app:circle_color="@color/movieDetailsMoreIconBackground"
+            app:circle_radius="20dp" />
+
+        <android.support.wearable.view.CircledImageView
+            android:id="@+id/galleryIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/homeIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="15.5dp"
+            android:layout_marginRight="23dp"
+            android:adjustViewBounds="false"
+            android:src="@drawable/ic_photo_camera_white_24dp"
+            app:circle_color="@color/movieDetailsMoreIconBackground"
+            app:circle_radius="20dp" />
+
+        <!-- Details layout -->
+        <LinearLayout
+            android:id="@+id/detailsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_below="@+id/backDropPath"
+            android:background="@color/movieDetailsInfoBackground"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp"
+            android:paddingLeft="21dp"
+            android:paddingRight="30dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/posterPath"
+                    android:layout_width="100dp"
+                    android:layout_height="146dp"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/placeholder_moviedetails" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="14dp"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="2.0"
+                    android:stepSize="0.1" />
+
+                <TextView
+                    android:id="@+id/voteCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/movieDetailsInfoData"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="18dp"
+                android:orientation="vertical">
+
+                <!-- Title text view -->
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/movieDetailsInfoTitle"
+                    android:textSize="20sp" />
+
+
+                <!-- Status text view -->
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:textColor="@color/movieDetailsInfoData" />
+
+                <!-- Type text view -->
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/movieDetailsInfoData" />
+
+                <!-- Episode runTime text view -->
+                <TextView
+                    android:id="@+id/episodeRuntime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/movieDetailsInfoData" />
+
+                <!-- Number of episodes text view -->
+                <TextView
+                    android:id="@+id/numberOfEpisodes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/movieDetailsInfoData" />
+
+                <!-- Number of seasons text view -->
+                <TextView
+                    android:id="@+id/numberOfSeasons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/movieDetailsInfoData" />
+
+                <!-- First air text view -->
+                <TextView
+                    android:id="@+id/firstAirDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/movieDetailsInfoData" />
+
+                <!-- Last air date text view -->
+                <TextView
+                    android:id="@+id/lastAirDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/movieDetailsInfoData" />
+
+                <!-- Countries begin here -->
+                <TextView
+                    android:id="@+id/countries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:lineSpacingMultiplier="1.3"
+                    android:textColor="@color/movieDetailsInfoData"
+                    android:textSize="12sp" />
+                <!-- Countries end here -->
+
+                <!-- Companies begin here -->
+                <TextView
+                    android:id="@+id/companies"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:lineSpacingMultiplier="1.3"
+                    android:textColor="@color/movieDetailsInfoData"
+                    android:textSize="12sp" />
+                <!-- Companies end here -->
+
+                <!-- Genres text view -->
+                <TextView
+                    android:id="@+id/genres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/movieDetailsInfoData"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/similarHolder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/detailsLayout"
+            android:background="@color/movieDetailsInfoBackground"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:background="@color/movieDetailsSimilarBackground"
+                android:orientation="vertical"
+                android:paddingTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:paddingLeft="15dp"
+                    android:text="@string/relatedTV"
+                    android:textColor="@color/black" />
+
+                <GridView
+                    android:id="@+id/tvDetailsSimilarGrid"
+                    android:layout_width="match_parent"
+                    android:layout_height="504dp"
+                    android:layout_marginLeft="-2dp"
+                    android:layout_marginRight="-2dp"
+                    android:columnWidth="126dp"
+                    android:listSelector="@android:color/transparent"
+                    android:numColumns="3"
+                    android:stretchMode="spacingWidthUniform"
+                    tools:listitem="@layout/similar_row" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</de.sourcestream.movieDB.view.ObservableParallaxScrollView>

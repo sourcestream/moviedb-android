@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright 2015 sourcestream GmbH
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<de.sourcestream.movieDB.view.ObservableParallaxScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/castdetailsinfo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:overScrollMode="never">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!-- layout_width="fill_parent" else the marginRight won't work -->
+
+
+        <ImageView
+            android:id="@+id/profilePath"
+            android:layout_width="match_parent"
+            android:layout_height="268dp"
+            android:layout_marginTop="104.9dp"
+            android:background="@drawable/placeholder_backdrop"
+            android:scaleType="centerCrop" />
+
+        <android.support.wearable.view.CircledImageView
+            android:id="@+id/moreIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/profilePath"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="-28dp"
+            android:adjustViewBounds="false"
+            android:src="@drawable/ic_more_vert_white_36dp"
+            app:circle_color="@color/movieDetailsMoreIconBackground"
+            app:circle_radius="28dp" />
+
+        <android.support.wearable.view.CircledImageView
+            android:id="@+id/homeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/moreIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="44dp"
+            android:layout_marginRight="23dp"
+            android:adjustViewBounds="false"
+            android:src="@drawable/ic_home_white_24dp"
+            app:circle_color="@color/movieDetailsMoreIconBackground"
+            app:circle_radius="20dp" />
+
+        <android.support.wearable.view.CircledImageView
+            android:id="@+id/galleryIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/homeIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="15.5dp"
+            android:layout_marginRight="23dp"
+            android:adjustViewBounds="false"
+            android:src="@drawable/ic_photo_camera_white_24dp"
+            app:circle_color="@color/movieDetailsMoreIconBackground"
+            app:circle_radius="20dp" />
+
+        <!-- Details layout -->
+        <LinearLayout
+            android:id="@+id/detailsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_below="@+id/profilePath"
+            android:background="@color/movieDetailsInfoBackground"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp"
+            android:paddingLeft="21dp"
+            android:paddingRight="21dp"
+            android:paddingTop="15dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+
+                <TextView
+                    android:id="@+id/birthInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:textColor="@color/castDetailsInfoBirth"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:id="@+id/alsoKnownAs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textColor="@color/castDetailsInfoBirth"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/knownHolder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/detailsLayout"
+            android:background="@color/movieDetailsInfoBackground"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:background="@color/movieDetailsSimilarBackground"
+                android:orientation="vertical"
+                android:paddingTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:paddingLeft="15dp"
+                    android:text="@string/knownFor"
+                    android:textColor="@color/black" />
+
+                <GridView
+                    android:id="@+id/castDetailsKnownGrid"
+                    android:layout_width="match_parent"
+                    android:layout_height="516dp"
+                    android:layout_marginLeft="-2dp"
+                    android:layout_marginRight="-2dp"
+                    android:columnWidth="129dp"
+                    android:listSelector="@android:color/transparent"
+                    android:numColumns="3"
+                    android:stretchMode="spacingWidthUniform"
+                    android:verticalSpacing="7dp"
+                    tools:listitem="@layout/similar_row" />
+
+                <Button
+                    android:id="@+id/showMoreButton"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="-9dp"
+                    android:text="@string/showMore"
+                    android:theme="@style/ShowMoreButton" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</de.sourcestream.movieDB.view.ObservableParallaxScrollView>
