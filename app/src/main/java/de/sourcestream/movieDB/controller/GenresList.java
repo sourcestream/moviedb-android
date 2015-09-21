@@ -64,6 +64,7 @@ public class GenresList extends Fragment implements AdapterView.OnItemClickListe
     private GenresAdapter genresAdapter;
     private MovieList movieList;
     private int backState;
+    private View rootView;
 
     private HttpURLConnection conn;
     private Bundle save;
@@ -97,9 +98,10 @@ public class GenresList extends Fragment implements AdapterView.OnItemClickListe
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View rootView = inflater.inflate(R.layout.genreslist, container, false);
+        rootView = inflater.inflate(R.layout.genreslist, container, false);
         activity = ((MainActivity) getActivity());
         spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);
+        listView = (AbsListView) rootView.findViewById(R.id.genresList);
 
         Tracker t = ((MovieDB) activity.getApplication()).getTracker();
         t.setScreenName("Genres");
@@ -117,7 +119,6 @@ public class GenresList extends Fragment implements AdapterView.OnItemClickListe
 
         movieList = new MovieList();
 
-        listView = (AbsListView) getActivity().findViewById(R.id.genresList);
         if (save != null) {
             backState = save.getInt("backState");
             if (backState == 1) {
@@ -244,7 +245,7 @@ public class GenresList extends Fragment implements AdapterView.OnItemClickListe
      */
     public void updateList() {
         if (getActivity() != null) {
-            listView = (AbsListView) getActivity().findViewById(R.id.genresList);
+            listView = (AbsListView) rootView.findViewById(R.id.genresList);
             genresList = new ArrayList<>();
             genresAdapter = new GenresAdapter(getActivity(), R.layout.genresrow, genresList);
             listView.setAdapter(genresAdapter);

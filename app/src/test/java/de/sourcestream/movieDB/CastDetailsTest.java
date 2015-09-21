@@ -30,7 +30,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-import de.sourcestream.movieDB.adapter.CastDetailsSlideAdapter;
 import de.sourcestream.movieDB.controller.CastDetails;
 import de.sourcestream.movieDB.controller.CastDetailsBiography;
 import de.sourcestream.movieDB.controller.CastDetailsCredits;
@@ -78,8 +77,17 @@ public class CastDetailsTest extends InstrumentationTestCase {
         assertNotNull("castDetailsFragmentView null", castDetailsFragmentView);
 
         assertNotNull("castDetailsFragment moreIcon is null", moreIcon);
-        assertNotNull("castDetailsFragment galleryIcon is null", homeIcon);
+        assertNotNull("castDetailsFragment homeIcon is null", homeIcon);
         assertNotNull("castDetailsFragment galleryIcon is null", galleryIcon);
+        assertNotNull("castDetailsFragment progressBar is null", castDetailsFragmentView.findViewById(R.id.progressBar));
+
+        assertNotNull("castDetailsFragment slidingTab is null", castDetailsFragmentView.findViewById(R.id.sliding_tabs));
+        ViewPager mViewPager = (ViewPager) castDetailsFragmentView.findViewById(R.id.castDetailsPager);
+        int expected = 3;
+        assertNotNull("castDetailsFragment mViewPager is null", mViewPager);
+        assertNotNull("castDetailsFragment mViewPager adapter is null", mViewPager.getAdapter());
+        assertEquals("mViewPager offScreenLimit is different!", expected, mViewPager.getOffscreenPageLimit());
+
     }
 
 
@@ -94,12 +102,7 @@ public class CastDetailsTest extends InstrumentationTestCase {
 
     @Test
     public void testCastDetailsInfo() throws Exception {
-        ViewPager mViewPager = (ViewPager) castDetailsFragmentView.findViewById(R.id.castDetailsPager);
-        CastDetailsSlideAdapter adapter = (CastDetailsSlideAdapter) mViewPager.getAdapter();
-
         assertNotNull("rootView is null", castDetailsFragmentView);
-        assertNotNull("mViewPager is null", mViewPager);
-        assertNotNull("adapter is null", adapter);
 
         CastDetailsInfo castDetailsInfo = new CastDetailsInfo();
         FragmentManager manager = activity.getFragmentManager();
@@ -125,14 +128,21 @@ public class CastDetailsTest extends InstrumentationTestCase {
         CircledImageView homeIcon = (CircledImageView) castDetailsInfoRoot.findViewById(R.id.homeIcon);
         CircledImageView galleryIcon = (CircledImageView) castDetailsInfoRoot.findViewById(R.id.galleryIcon);
 
-        assertNotNull("moreIcon is null", castDetailsInfoRoot.findViewById(R.id.moreIcon));
-        assertNotNull("homeIcon is null", castDetailsInfoRoot.findViewById(R.id.homeIcon));
-        assertNotNull("galleryIcon is null", castDetailsInfoRoot.findViewById(R.id.galleryIcon));
+        assertNotNull("moreIcon is null", moreIcon);
+        assertNotNull("homeIcon is null", homeIcon);
+        assertNotNull("galleryIcon is null", galleryIcon);
 
         int expected = View.INVISIBLE;
         assertEquals("moreIcon visibility is different!", View.VISIBLE, moreIcon.getVisibility());
         assertEquals("homeIcon visibility is different!", expected, homeIcon.getVisibility());
         assertEquals("galleryIcon visibility is different!", expected, galleryIcon.getVisibility());
+
+        assertNotNull("castdetailsinfo is null", castDetailsInfoRoot.findViewById(R.id.castdetailsinfo));
+        assertNotNull("castDetailsKnownGrid is null", castDetailsInfoRoot.findViewById(R.id.castDetailsKnownGrid));
+        assertNotNull("knownHolder is null", castDetailsInfoRoot.findViewById(R.id.knownHolder));
+        assertNotNull("showMoreButton is null", castDetailsInfoRoot.findViewById(R.id.showMoreButton));
+        assertNotNull("detailsLayout is null", castDetailsInfoRoot.findViewById(R.id.detailsLayout));
+
     }
 
     @Test
