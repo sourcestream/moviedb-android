@@ -62,7 +62,7 @@ import de.sourcestream.movieDB.model.MovieModel;
 public class TVList extends Fragment implements AdapterView.OnItemClickListener {
 
     private MainActivity activity;
-
+    private View rootView;
     private ArrayList<MovieModel> tvList;
     private int checkLoadMore = 0;
     private int totalPages;
@@ -114,8 +114,6 @@ public class TVList extends Fragment implements AdapterView.OnItemClickListener 
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View rootView;
-
         if (this.getArguments().getString("currentList") != null) {
             switch (this.getArguments().getString("currentList")) {
                 case "onTheAir":
@@ -136,9 +134,9 @@ public class TVList extends Fragment implements AdapterView.OnItemClickListener 
         } else
             rootView = inflater.inflate(R.layout.movieslist, container, false);
 
-        toastLoadingMore = Toast.makeText(getActivity(), R.string.loadingMore, Toast.LENGTH_SHORT);
 
         activity = ((MainActivity) getActivity());
+        toastLoadingMore = Toast.makeText(activity, R.string.loadingMore, Toast.LENGTH_SHORT);
         spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);
         phone = getResources().getBoolean(R.bool.portrait_only);
         scale = getResources().getDisplayMetrics().density;
@@ -165,22 +163,22 @@ public class TVList extends Fragment implements AdapterView.OnItemClickListener 
             switch (this.getArguments().getString("currentList")) {
 
                 case "onTheAir":
-                    listView = (AbsListView) getActivity().findViewById(R.id.TVOnTheAirList);
+                    listView = (AbsListView) rootView.findViewById(R.id.TVOnTheAirList);
                     break;
                 case "airingToday":
-                    listView = (AbsListView) getActivity().findViewById(R.id.TVAiringTodayList);
+                    listView = (AbsListView) rootView.findViewById(R.id.TVAiringTodayList);
                     break;
                 case "popular":
-                    listView = (AbsListView) getActivity().findViewById(R.id.TVPopularList);
+                    listView = (AbsListView) rootView.findViewById(R.id.TVPopularList);
                     break;
                 case "topRated":
-                    listView = (AbsListView) getActivity().findViewById(R.id.TVTopRatedList);
+                    listView = (AbsListView) rootView.findViewById(R.id.TVTopRatedList);
                     break;
                 default:
-                    listView = (AbsListView) getActivity().findViewById(R.id.TVOnTheAirList);
+                    listView = (AbsListView) rootView.findViewById(R.id.TVOnTheAirList);
             }
         } else
-            listView = (AbsListView) getActivity().findViewById(R.id.TVOnTheAirList);
+            listView = (AbsListView) rootView.findViewById(R.id.TVOnTheAirList);
 
         //Handle orientation change starts
         if (save != null) {
