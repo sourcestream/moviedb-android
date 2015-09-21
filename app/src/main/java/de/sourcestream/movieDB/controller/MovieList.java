@@ -62,7 +62,7 @@ import de.sourcestream.movieDB.model.MovieModel;
 public class MovieList extends Fragment implements AdapterView.OnItemClickListener {
 
     private MainActivity activity;
-
+    private View rootView;
     private ArrayList<MovieModel> moviesList;
     private int checkLoadMore = 0;
     private int totalPages;
@@ -116,7 +116,6 @@ public class MovieList extends Fragment implements AdapterView.OnItemClickListen
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View rootView;
         movieModel = new MovieModel();
 
         if (this.getArguments().getString("currentList") != null) {
@@ -139,9 +138,9 @@ public class MovieList extends Fragment implements AdapterView.OnItemClickListen
         } else
             rootView = inflater.inflate(R.layout.movieslist, container, false);
 
-        toastLoadingMore = Toast.makeText(getActivity(), R.string.loadingMore, Toast.LENGTH_SHORT);
 
         activity = ((MainActivity) getActivity());
+        toastLoadingMore = Toast.makeText(activity, R.string.loadingMore, Toast.LENGTH_SHORT);
         spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);
         phone = getResources().getBoolean(R.bool.portrait_only);
         scale = getResources().getDisplayMetrics().density;
@@ -169,27 +168,27 @@ public class MovieList extends Fragment implements AdapterView.OnItemClickListen
             switch (this.getArguments().getString("currentList")) {
 
                 case "upcoming":
-                    listView = (AbsListView) getActivity().findViewById(R.id.movieslist);
+                    listView = (AbsListView) rootView.findViewById(R.id.movieslist);
                     break;
                 case "nowPlaying":
-                    listView = (AbsListView) getActivity().findViewById(R.id.nowplaying);
+                    listView = (AbsListView) rootView.findViewById(R.id.nowplaying);
                     break;
                 case "popular":
-                    listView = (AbsListView) getActivity().findViewById(R.id.popular);
+                    listView = (AbsListView) rootView.findViewById(R.id.popular);
                     break;
                 case "topRated":
-                    listView = (AbsListView) getActivity().findViewById(R.id.toprated);
+                    listView = (AbsListView) rootView.findViewById(R.id.toprated);
                     break;
                 default:
                     // used in genres
                     activity.getMovieSlideTab().showInstantToolbar();
-                    listView = (AbsListView) getActivity().findViewById(R.id.movieslist);
+                    listView = (AbsListView) rootView.findViewById(R.id.movieslist);
                     listView.setPadding(0, activity.getToolbar().getHeight(), 0, 0);
                     genresList = true;
             }
         } else {
             // used when looking all credits for a specific person
-            listView = (AbsListView) getActivity().findViewById(R.id.movieslist);
+            listView = (AbsListView) rootView.findViewById(R.id.movieslist);
             moviesList = new ArrayList<>();
             moviesList = this.getArguments().getParcelableArrayList("credits");
             movieAdapter = new MovieAdapter(getActivity(), R.layout.row, moviesList);
