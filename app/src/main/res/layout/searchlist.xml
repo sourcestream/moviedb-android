@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
    Copyright 2015 sourcestream GmbH
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,25 +20,12 @@
     android:orientation="vertical"
     android:paddingTop="?attr/actionBarSize">
 
-    <RelativeLayout
+    <de.sourcestream.movieDB.helper.ObservableListView
+        android:id="@+id/movieslist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <de.sourcestream.movieDB.helper.ObservableListView
-            android:id="@+id/movieslist"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@color/movieListDivider"
-            android:dividerHeight="1dp"
-            android:listSelector="@drawable/listitem_selector"
-            tools:listitem="@layout/row" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:visibility="gone" />
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:divider="@color/movieListDivider"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/listitem_selector"
+        tools:listitem="@layout/row" />
 </FrameLayout>

@@ -17,9 +17,7 @@
 package de.sourcestream.movieDB;
 
 import android.app.FragmentManager;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.test.InstrumentationTestCase;
 import android.view.View;
 import android.widget.AbsListView;
@@ -31,19 +29,16 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.util.ArrayList;
 
-import de.sourcestream.movieDB.controller.GenresList;
-import de.sourcestream.movieDB.controller.MovieList;
-import de.sourcestream.movieDB.controller.TVList;
+import de.sourcestream.movieDB.controller.SearchList;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, emulateSdk = 21)
-public class TVListTest extends InstrumentationTestCase {
+public class SearchListTest extends InstrumentationTestCase {
 
     private static final String FRAGMENT_TAG = "fragment";
     private MainActivity activity;
-    private TVList tvList;
+    private SearchList searchList;
 
 
     /**
@@ -52,29 +47,25 @@ public class TVListTest extends InstrumentationTestCase {
      */
     @Before
     public void setUp() throws Exception {
-        tvList = new TVList();
+        searchList = new SearchList();
         activity = Robolectric.buildActivity(MainActivity.class).create().get();
         FragmentManager manager = activity.getFragmentManager();
-        Bundle args = new Bundle();
-        args.putString("currentList", "onTheAir");
-        tvList.setArguments(args);
-        manager.beginTransaction().add(tvList, FRAGMENT_TAG).commit();
+        manager.beginTransaction().add(searchList, FRAGMENT_TAG).commit();
     }
 
     @Test
     public void testPreconditions() throws Exception {
         assertNotNull("activity is null", activity);
         assertNotNull("DrawerLayout is null", activity.getMDrawerLayout());
-        assertNotNull("tvList is null", tvList);
+        assertNotNull("searchList is null", searchList);
         assertNotNull("cant find fragment", activity.getFragmentManager().findFragmentByTag(FRAGMENT_TAG));
     }
 
     @Test
     public void testViews() throws Exception {
-        View movieListRoot = tvList.getView();
-        assertNotNull("tvList rootView is null", movieListRoot);
-        assertNotNull("progressBar is null", movieListRoot.findViewById(R.id.progressBar));
-        AbsListView listView = (AbsListView) movieListRoot.findViewById(R.id.TVOnTheAirList);
+        View searchListRoot = searchList.getView();
+        assertNotNull("searchList rootView is null", searchListRoot);
+        AbsListView listView = (AbsListView) searchListRoot.findViewById(R.id.movieslist);
         assertNotNull("listView is null", listView);
         assertNotNull("listView listener is null", listView.getOnItemClickListener());
 
