@@ -143,6 +143,10 @@ public class CastDetails extends Fragment implements ObservableScrollViewCallbac
     private int iconMarginConstant;
     private int iconMarginLandscape;
     private int iconConstantSpecialCase;
+    private int twoIcons;
+    private int twoIconsToolbar;
+    private int oneIcon;
+    private int oneIconToolbar;
     private float scale;
     private boolean phone;
     private int hideThreshold;
@@ -312,6 +316,10 @@ public class CastDetails extends Fragment implements ObservableScrollViewCallbac
         iconMarginConstant = activity.getIconMarginConstant();
         iconMarginLandscape = activity.getIconMarginLandscape();
         iconConstantSpecialCase = activity.getIconConstantSpecialCase();
+        twoIcons = activity.getTwoIcons();
+        twoIconsToolbar = activity.getTwoIconsToolbar();
+        oneIcon = activity.getOneIcon();
+        oneIconToolbar = activity.getOneIconToolbar();
 
         Tracker t = ((MovieDB) activity.getApplication()).getTracker();
         t.setScreenName("CastDetails - " + getTitle());
@@ -867,17 +875,17 @@ public class CastDetails extends Fragment implements ObservableScrollViewCallbac
                 if (currPos == 0) {
                     // 2 icons
                     if (items == 0) {
-                        if (toolbarHidden && currScroll / scale > 183) {
+                        if (toolbarHidden && currScroll / scale > twoIcons) {
                             iconDirection = -1;
-                        } else if (!toolbarHidden && currScroll / scale > 127) {
+                        } else if (!toolbarHidden && currScroll / scale > twoIconsToolbar) {
                             iconDirection = -1;
                         }
                     }
                     // 1 icon
                     if (items == 1) {
-                        if (toolbarHidden && currScroll / scale > 238) {
+                        if (toolbarHidden && currScroll / scale > oneIcon) {
                             iconDirection = -1;
-                        } else if (!toolbarHidden && currScroll / scale > 182) {
+                        } else if (!toolbarHidden && currScroll / scale > oneIconToolbar) {
                             iconDirection = -1;
                         }
                     }
