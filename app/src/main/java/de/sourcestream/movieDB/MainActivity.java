@@ -179,6 +179,12 @@ public class MainActivity extends AppCompatActivity {
     private int iconMarginConstant;
     private int iconMarginLandscape;
     private int iconConstantSpecialCase;
+    private int threeIcons;
+    private int threeIconsToolbar;
+    private int twoIcons;
+    private int twoIconsToolbar;
+    private int oneIcon;
+    private int oneIconToolbar;
     private boolean phone;
     private DateFormat dateFormat;
 
@@ -423,14 +429,37 @@ public class MainActivity extends AppCompatActivity {
             if (width <= 480 && height <= 800)
                 iconConstantSpecialCase = -70;
 
+            // used in MovieDetails, CastDetails, TVDetails onMoreIconClick
+            // to check whether the animation should be in up or down direction
+            threeIcons = 128;
+            threeIconsToolbar = 72;
+            twoIcons = 183;
+            twoIconsToolbar = 127;
+            oneIcon = 238;
+            oneIconToolbar = 182;
         } else {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 iconMarginConstant = 232;
                 iconMarginLandscape = 300;
+
+                threeIcons = 361;
+                threeIconsToolbar = 295;
+                twoIcons = 416;
+                twoIconsToolbar = 351;
+                oneIcon = 469;
+                oneIconToolbar = 407;
             } else {
                 iconMarginConstant = 82;
                 iconMarginLandscape = 0;
+
+                threeIcons = 209;
+                threeIconsToolbar = 146;
+                twoIcons = 264;
+                twoIconsToolbar = 200;
+                oneIcon = 319;
+                oneIconToolbar = 256;
             }
+
         }
 
         dateFormat = android.text.format.DateFormat.getDateFormat(this);
@@ -1985,6 +2014,30 @@ public class MainActivity extends AppCompatActivity {
 
     public DateFormat getDateFormat() {
         return dateFormat;
+    }
+
+    public int getOneIcon() {
+        return oneIcon;
+    }
+
+    public int getOneIconToolbar() {
+        return oneIconToolbar;
+    }
+
+    public int getTwoIcons() {
+        return twoIcons;
+    }
+
+    public int getTwoIconsToolbar() {
+        return twoIconsToolbar;
+    }
+
+    public int getThreeIcons() {
+        return threeIcons;
+    }
+
+    public int getThreeIconsToolbar() {
+        return threeIconsToolbar;
     }
 
 }

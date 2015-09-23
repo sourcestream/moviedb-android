@@ -138,6 +138,12 @@ public class MovieDetails extends Fragment implements ObservableScrollViewCallba
     private int iconMarginConstant;
     private int iconMarginLandscape;
     private int iconConstantSpecialCase;
+    private int threeIcons;
+    private int threeIconsToolbar;
+    private int twoIcons;
+    private int twoIconsToolbar;
+    private int oneIcon;
+    private int oneIconToolbar;
     private float scale;
     private boolean phone;
     private int hideThreshold;
@@ -324,6 +330,12 @@ public class MovieDetails extends Fragment implements ObservableScrollViewCallba
         iconMarginConstant = activity.getIconMarginConstant();
         iconMarginLandscape = activity.getIconMarginLandscape();
         iconConstantSpecialCase = activity.getIconConstantSpecialCase();
+        threeIcons = activity.getThreeIcons();
+        threeIconsToolbar = activity.getThreeIconsToolbar();
+        twoIcons = activity.getTwoIcons();
+        twoIconsToolbar = activity.getTwoIconsToolbar();
+        oneIcon = activity.getOneIcon();
+        oneIconToolbar = activity.getOneIconToolbar();
 
         Tracker t = ((MovieDB) activity.getApplication()).getTracker();
         t.setScreenName("MovieDetails - " + getTitle());
@@ -948,31 +960,30 @@ public class MovieDetails extends Fragment implements ObservableScrollViewCallba
             items = homeIconCheck + galleryIconCheck + trailerIconCheck;
             toolbarHidden = toolbarView.getTranslationY() == -toolbarView.getHeight();
             currScroll = movieDetailsInfo.getRootView().getScrollY();
-
             if (!key) {
                 iconDirection = 1;
                 if (currPos == 0) {
                     // 3 icons
                     if (items == 0) {
-                        if (toolbarHidden && currScroll / scale > 128) {
+                        if (toolbarHidden && currScroll / scale > threeIcons) {
                             iconDirection = -1;
-                        } else if (!toolbarHidden && currScroll / scale > 72) {
+                        } else if (!toolbarHidden && currScroll / scale > threeIconsToolbar) {
                             iconDirection = -1;
                         }
                     }
                     // 2 icons
                     if (items == 1) {
-                        if (toolbarHidden && currScroll / scale > 183) {
+                        if (toolbarHidden && currScroll / scale > twoIcons) {
                             iconDirection = -1;
-                        } else if (!toolbarHidden && currScroll / scale > 127) {
+                        } else if (!toolbarHidden && currScroll / scale > twoIconsToolbar) {
                             iconDirection = -1;
                         }
                     }
                     // 1 icon
                     if (items == 2) {
-                        if (toolbarHidden && currScroll / scale > 238) {
+                        if (toolbarHidden && currScroll / scale > oneIcon) {
                             iconDirection = -1;
-                        } else if (!toolbarHidden && currScroll / scale > 182) {
+                        } else if (!toolbarHidden && currScroll / scale > oneIconToolbar) {
                             iconDirection = -1;
                         }
                     }
