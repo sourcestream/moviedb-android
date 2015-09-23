@@ -17,12 +17,9 @@
 package de.sourcestream.movieDB;
 
 import android.app.FragmentManager;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.test.InstrumentationTestCase;
 import android.view.View;
-import android.widget.AbsListView;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,19 +28,16 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.util.ArrayList;
 
-import de.sourcestream.movieDB.controller.GenresList;
-import de.sourcestream.movieDB.controller.MovieList;
-import de.sourcestream.movieDB.controller.TVList;
+import de.sourcestream.movieDB.controller.MovieSlideTab;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, emulateSdk = 21)
-public class TVListTest extends InstrumentationTestCase {
+public class MovieSlideTabTest extends InstrumentationTestCase {
 
     private static final String FRAGMENT_TAG = "fragment";
     private MainActivity activity;
-    private TVList tvList;
+    private MovieSlideTab movieSlideTab;
 
 
     /**
@@ -52,32 +46,30 @@ public class TVListTest extends InstrumentationTestCase {
      */
     @Before
     public void setUp() throws Exception {
-        tvList = new TVList();
+        movieSlideTab = new MovieSlideTab();
         activity = Robolectric.buildActivity(MainActivity.class).create().get();
         FragmentManager manager = activity.getFragmentManager();
-        Bundle args = new Bundle();
-        args.putString("currentList", "onTheAir");
-        tvList.setArguments(args);
-        manager.beginTransaction().add(tvList, FRAGMENT_TAG).commit();
+        manager.beginTransaction().add(movieSlideTab, FRAGMENT_TAG).commit();
     }
 
     @Test
     public void testPreconditions() throws Exception {
         assertNotNull("activity is null", activity);
         assertNotNull("DrawerLayout is null", activity.getMDrawerLayout());
-        assertNotNull("tvList is null", tvList);
+        assertNotNull("movieSlideTab is null", movieSlideTab);
         assertNotNull("cant find fragment", activity.getFragmentManager().findFragmentByTag(FRAGMENT_TAG));
     }
 
     @Test
     public void testViews() throws Exception {
-        View movieListRoot = tvList.getView();
-        assertNotNull("tvList rootView is null", movieListRoot);
-        assertNotNull("progressBar is null", movieListRoot.findViewById(R.id.progressBar));
-        AbsListView listView = (AbsListView) movieListRoot.findViewById(R.id.TVOnTheAirList);
-        assertNotNull("listView is null", listView);
-        assertNotNull("listView listener is null", listView.getOnItemClickListener());
-
+        View movieSlideTabRoot = movieSlideTab.getView();
+        assertNotNull("movieSlideTab rootView is null", movieSlideTabRoot);
+        assertNotNull("movieSlideTab slidingTab is null", movieSlideTabRoot.findViewById(R.id.sliding_tabs));
+        ViewPager mViewPager = (ViewPager) movieSlideTabRoot.findViewById(R.id.moviePager);
+        int expected = 1;
+        assertNotNull("movieSlideTab mViewPager is null", mViewPager);
+        assertNotNull("movieSlideTab mViewPager adapter is null", mViewPager.getAdapter());
+        assertEquals("mViewPager offScreenLimit is different!", expected, mViewPager.getOffscreenPageLimit());
     }
 
 }

@@ -115,6 +115,8 @@ public class SearchList extends Fragment implements AdapterView.OnItemClickListe
 
 
         View rootView = inflater.inflate(R.layout.searchlist, container, false);
+        listView = (AbsListView) rootView.findViewById(R.id.movieslist);
+        listView.setOnItemClickListener(this);
         toastLoadingMore = Toast.makeText(getActivity(), R.string.loadingMore, Toast.LENGTH_SHORT);
         activity = ((MainActivity) getActivity());
 
@@ -131,8 +133,6 @@ public class SearchList extends Fragment implements AdapterView.OnItemClickListe
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        listView = (AbsListView) getActivity().findViewById(R.id.movieslist);
-        listView.setOnItemClickListener(this);
         if (save != null) {
             totalPages = save.getInt("totalPages");
             setTitle(save.getString("title"));
@@ -151,8 +151,6 @@ public class SearchList extends Fragment implements AdapterView.OnItemClickListe
                     search();
             }
         }
-        listView.setAdapter(searchAdapter);
-        listView.setOnScrollListener(endlessScrollListener);
         activity.setTitle(getTitle());
         activity.clearSearchCount();
 
@@ -164,12 +162,14 @@ public class SearchList extends Fragment implements AdapterView.OnItemClickListe
             if (navDrawPos == 1) {
                 MovieSlideTab movieSlideTab = activity.getMovieSlideTab();
                 MovieList movieListView = (MovieList) getFragmentManager().findFragmentByTag(movieSlideTab.getFragmentTag(movieSlideTab.getCurrPos()));
-                movieList = movieListView.getMoviesList();
+                if (movieListView != null)
+                    movieList = movieListView.getMoviesList();
             }
             if (navDrawPos == 2) {
                 TVSlideTab tvSlideTab = activity.getTvSlideTab();
                 TVList tvListView = (TVList) getFragmentManager().findFragmentByTag(tvSlideTab.getFragmentTag(tvSlideTab.getCurrPos()));
-                movieList = tvListView.getTVList();
+                if (tvListView != null)
+                    movieList = tvListView.getTVList();
             }
             if (navDrawPos == 3) {
                 GenresList genres = activity.getGenresList();
@@ -177,7 +177,8 @@ public class SearchList extends Fragment implements AdapterView.OnItemClickListe
                 if (movieList == null || movieList.size() == 0) {
                     MovieSlideTab movieSlideTab = activity.getMovieSlideTab();
                     MovieList movieListView = (MovieList) getFragmentManager().findFragmentByTag(movieSlideTab.getFragmentTag(movieSlideTab.getCurrPos()));
-                    movieList = movieListView.getMoviesList();
+                    if (movieListView != null)
+                        movieList = movieListView.getMoviesList();
                 }
 
             }
@@ -201,10 +202,11 @@ public class SearchList extends Fragment implements AdapterView.OnItemClickListe
                 searchList.add(search);
             }
 
-            listView.setAdapter(searchAdapter);
-            listView.setOnScrollListener(endlessScrollListener);
-
         }
+
+        listView.setAdapter(searchAdapter);
+        listView.setOnScrollListener(endlessScrollListener);
+
         if (activity.getOldPos() == 1)
             activity.getMovieSlideTab().showInstantToolbar();
         else
