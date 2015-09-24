@@ -36,7 +36,7 @@
             android:background="@drawable/placeholder_backdrop"
             android:scaleType="centerCrop" />
 
-        <android.support.wearable.view.CircledImageView
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/moreIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,12 +44,13 @@
             android:layout_below="@+id/backDropPath"
             android:layout_marginRight="15dp"
             android:layout_marginTop="-28dp"
-            android:adjustViewBounds="false"
+            android:scaleType="center"
             android:src="@drawable/ic_more_vert_white_36dp"
-            app:circle_color="@color/movieDetailsMoreIconBackground"
-            app:circle_radius="28dp" />
+            app:elevation="0dp"
+            app:fabSize="normal"
+            app:pressedTranslationZ="0dp" />
 
-        <android.support.wearable.view.CircledImageView
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/homeIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,12 +58,12 @@
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="44dp"
             android:layout_marginRight="23dp"
-            android:adjustViewBounds="false"
             android:src="@drawable/ic_home_white_24dp"
-            app:circle_color="@color/movieDetailsMoreIconBackground"
-            app:circle_radius="20dp" />
+            app:elevation="0dp"
+            app:fabSize="mini"
+            app:pressedTranslationZ="0dp" />
 
-        <android.support.wearable.view.CircledImageView
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/trailerIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,12 +71,12 @@
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="15.5dp"
             android:layout_marginRight="23dp"
-            android:adjustViewBounds="false"
             android:src="@drawable/ic_videocam_white_24dp"
-            app:circle_color="@color/movieDetailsMoreIconBackground"
-            app:circle_radius="20dp" />
+            app:elevation="0dp"
+            app:fabSize="mini"
+            app:pressedTranslationZ="0dp" />
 
-        <android.support.wearable.view.CircledImageView
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/galleryIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,10 +84,10 @@
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="15dp"
             android:layout_marginRight="23dp"
-            android:adjustViewBounds="false"
             android:src="@drawable/ic_photo_camera_white_24dp"
-            app:circle_color="@color/movieDetailsMoreIconBackground"
-            app:circle_radius="20dp" />
+            app:elevation="0dp"
+            app:fabSize="mini"
+            app:pressedTranslationZ="0dp" />
 
         <!-- Details layout -->
         <LinearLayout
