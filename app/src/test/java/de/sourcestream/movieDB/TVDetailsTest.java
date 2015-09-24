@@ -18,8 +18,8 @@ package de.sourcestream.movieDB;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
-import android.support.wearable.view.CircledImageView;
 import android.test.InstrumentationTestCase;
 import android.view.View;
 
@@ -43,9 +43,9 @@ public class TVDetailsTest extends InstrumentationTestCase {
     private MainActivity activity;
     private TVDetails tvDetailsFragment;
     private View tvDetailsFragmentView;
-    private CircledImageView moreIcon;
-    private CircledImageView homeIcon;
-    private CircledImageView galleryIcon;
+    private FloatingActionButton moreIcon;
+    private FloatingActionButton homeIcon;
+    private FloatingActionButton galleryIcon;
 
 
     /**
@@ -63,9 +63,9 @@ public class TVDetailsTest extends InstrumentationTestCase {
         manager.beginTransaction().add(tvDetailsFragment, FRAGMENT_TAG).commit();
 
         tvDetailsFragmentView = tvDetailsFragment.getView();
-        moreIcon = (CircledImageView) tvDetailsFragmentView.findViewById(R.id.moreIcon);
-        homeIcon = (CircledImageView) tvDetailsFragmentView.findViewById(R.id.homeIcon);
-        galleryIcon = (CircledImageView) tvDetailsFragmentView.findViewById(R.id.galleryIcon);
+        moreIcon = (FloatingActionButton) tvDetailsFragmentView.findViewById(R.id.moreIcon);
+        homeIcon = (FloatingActionButton) tvDetailsFragmentView.findViewById(R.id.homeIcon);
+        galleryIcon = (FloatingActionButton) tvDetailsFragmentView.findViewById(R.id.galleryIcon);
     }
 
     @Test
@@ -129,9 +129,9 @@ public class TVDetailsTest extends InstrumentationTestCase {
         assertNotNull("voteCount is null", tvDetailsInfoRoot.findViewById(R.id.voteCount));
 
 
-        CircledImageView moreIcon = (CircledImageView) tvDetailsInfoRoot.findViewById(R.id.moreIcon);
-        CircledImageView homeIcon = (CircledImageView) tvDetailsInfoRoot.findViewById(R.id.homeIcon);
-        CircledImageView galleryIcon = (CircledImageView) tvDetailsInfoRoot.findViewById(R.id.galleryIcon);
+        FloatingActionButton moreIcon = (FloatingActionButton) tvDetailsInfoRoot.findViewById(R.id.moreIcon);
+        FloatingActionButton homeIcon = (FloatingActionButton) tvDetailsInfoRoot.findViewById(R.id.homeIcon);
+        FloatingActionButton galleryIcon = (FloatingActionButton) tvDetailsInfoRoot.findViewById(R.id.galleryIcon);
 
         assertNotNull("moreIcon is null", moreIcon);
         assertNotNull("homeIcon is null", homeIcon);

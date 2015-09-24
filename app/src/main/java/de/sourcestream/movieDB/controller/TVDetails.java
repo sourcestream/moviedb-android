@@ -27,10 +27,10 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.wearable.view.CircledImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,11 +95,11 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
 
     private ProgressBar spinner;
     private int moreIconCheck;
-    private CircledImageView moreIcon;
-    private CircledImageView homeIcon;
+    private FloatingActionButton moreIcon;
+    private FloatingActionButton homeIcon;
     private int homeIconCheck;
     private int galleryIconCheck;
-    private CircledImageView galleryIcon;
+    private FloatingActionButton galleryIcon;
     private ArrayList<String> galleryList;
 
     private onGalleryIconClick onGalleryIconClick;
@@ -203,16 +203,22 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
             rootView = inflater.inflate(R.layout.tvdetails, container, false);
             spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);
 
-            homeIcon = (CircledImageView) rootView.findViewById(R.id.homeIcon);
+            homeIcon = (FloatingActionButton) rootView.findViewById(R.id.homeIcon);
             homeIcon.bringToFront();
             homeIcon.setVisibility(View.INVISIBLE);
-            galleryIcon = (CircledImageView) rootView.findViewById(R.id.galleryIcon);
+            galleryIcon = (FloatingActionButton) rootView.findViewById(R.id.galleryIcon);
             galleryIcon.bringToFront();
             galleryIcon.setVisibility(View.INVISIBLE);
 
             // Highest Z-index has to be declared last
-            moreIcon = (CircledImageView) rootView.findViewById(R.id.moreIcon);
+            moreIcon = (FloatingActionButton) rootView.findViewById(R.id.moreIcon);
             moreIcon.bringToFront();
+
+            if (Build.VERSION.SDK_INT >= 21) {
+                homeIcon.setElevation(6 * scale);
+                galleryIcon.setElevation(6 * scale);
+                moreIcon.setElevation(6 * scale);
+            }
         }
         moreIcon.setOnClickListener(onMoreIconClick);
 
@@ -673,7 +679,7 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
                 if (conn != null)
                     conn.disconnect();
             } catch (InterruptedException e) {
-                
+
             } finally {
                 if (conn != null)
                     conn.disconnect();
@@ -1399,17 +1405,17 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
      * @param homeIcon    the first icon
      * @param galleryIcon the second icon
      */
-    public void adjustIconsPos(CircledImageView homeIcon, CircledImageView galleryIcon) {
+    public void adjustIconsPos(FloatingActionButton homeIcon, FloatingActionButton galleryIcon) {
         int iconCount[] = {homeIconCheck, galleryIconCheck};
-        ArrayList<CircledImageView> circledImageViews = new ArrayList<>();
+        ArrayList<FloatingActionButton> circledImageViews = new ArrayList<>();
         circledImageViews.add(homeIcon);
         circledImageViews.add(galleryIcon);
 
         for (int i = 0; i < iconCount.length; i++) {
             if (iconCount[i] == 1)
-                circledImageViews.get(circledImageViews.size() - 1).setVisibility(View.INVISIBLE);
+                circledImageViews.get(circledImageViews.size() - 1).setVisibility(View.GONE);
             else {
-                CircledImageView temp = circledImageViews.get(0);
+                FloatingActionButton temp = circledImageViews.get(0);
                 switch (i) {
                     case 0:
                         temp.setOnClickListener(onHomeIconClick);
@@ -1437,13 +1443,13 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
      * @param homeIcon    first icon
      * @param galleryIcon second icon
      */
-    public void showHideImages(int visibility, CircledImageView homeIcon, CircledImageView galleryIcon) {
+    public void showHideImages(int visibility, FloatingActionButton homeIcon, FloatingActionButton galleryIcon) {
         float dy[] = {0.7f, 56.7f};
         float infoTabDy[] = {-2.4f, 53.5f};
         int currDy = 0;
         int delay = 100;
         int iconCount[] = {homeIconCheck, galleryIconCheck};
-        ArrayList<CircledImageView> circledImageViews = new ArrayList<>();
+        ArrayList<FloatingActionButton> circledImageViews = new ArrayList<>();
         circledImageViews.add(homeIcon);
         circledImageViews.add(galleryIcon);
 
@@ -1463,7 +1469,7 @@ public class TVDetails extends Fragment implements ObservableScrollViewCallbacks
             if (iconCount[i] == 1)
                 circledImageViews.get(circledImageViews.size() - 1).setVisibility(View.INVISIBLE);
             else {
-                CircledImageView temp = circledImageViews.get(0);
+                FloatingActionButton temp = circledImageViews.get(0);
                 if (visibility == View.VISIBLE) {
                     if (currPos == 0)
                         createIconUpAnimation(infoTabDy[currDy], delay);
