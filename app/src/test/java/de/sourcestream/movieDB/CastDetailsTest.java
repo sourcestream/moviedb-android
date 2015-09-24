@@ -132,7 +132,7 @@ public class CastDetailsTest extends InstrumentationTestCase {
         assertNotNull("homeIcon is null", homeIcon);
         assertNotNull("galleryIcon is null", galleryIcon);
 
-        int expected = View.INVISIBLE;
+        int expected = View.GONE;
         assertEquals("moreIcon visibility is different!", View.VISIBLE, moreIcon.getVisibility());
         assertEquals("homeIcon visibility is different!", expected, homeIcon.getVisibility());
         assertEquals("galleryIcon visibility is different!", expected, galleryIcon.getVisibility());
