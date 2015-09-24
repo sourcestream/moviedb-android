@@ -74,7 +74,7 @@
             android:src="@drawable/ic_photo_camera_white_24dp"
             app:elevation="0dp"
             app:fabSize="mini"
-            app:pressedTranslationZ="0dp" />
+            app:pressedTranslationZ="0dp" />adjust
 
         <!-- Details layout -->
         <LinearLayout
