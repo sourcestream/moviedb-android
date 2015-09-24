@@ -18,8 +18,8 @@ package de.sourcestream.movieDB;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
-import android.support.wearable.view.CircledImageView;
 import android.test.InstrumentationTestCase;
 import android.view.View;
 
@@ -43,10 +43,10 @@ public class MovieDetailsTest extends InstrumentationTestCase {
     private MainActivity activity;
     private MovieDetails movieDetailsFragment;
     private View movieDetailsFragmentView;
-    private CircledImageView moreIcon;
-    private CircledImageView homeIcon;
-    private CircledImageView galleryIcon;
-    private CircledImageView trailerIcon;
+    private FloatingActionButton moreIcon;
+    private FloatingActionButton homeIcon;
+    private FloatingActionButton galleryIcon;
+    private FloatingActionButton trailerIcon;
 
 
     /**
@@ -64,10 +64,10 @@ public class MovieDetailsTest extends InstrumentationTestCase {
         manager.beginTransaction().add(movieDetailsFragment, FRAGMENT_TAG).commit();
 
         movieDetailsFragmentView = movieDetailsFragment.getView();
-        moreIcon = (CircledImageView) movieDetailsFragmentView.findViewById(R.id.moreIcon);
-        homeIcon = (CircledImageView) movieDetailsFragmentView.findViewById(R.id.homeIcon);
-        galleryIcon = (CircledImageView) movieDetailsFragmentView.findViewById(R.id.galleryIcon);
-        trailerIcon = (CircledImageView) movieDetailsFragmentView.findViewById(R.id.trailerIcon);
+        moreIcon = (FloatingActionButton) movieDetailsFragmentView.findViewById(R.id.moreIcon);
+        homeIcon = (FloatingActionButton) movieDetailsFragmentView.findViewById(R.id.homeIcon);
+        galleryIcon = (FloatingActionButton) movieDetailsFragmentView.findViewById(R.id.galleryIcon);
+        trailerIcon = (FloatingActionButton) movieDetailsFragmentView.findViewById(R.id.trailerIcon);
     }
 
     @Test
@@ -128,10 +128,10 @@ public class MovieDetailsTest extends InstrumentationTestCase {
         assertNotNull("ratingBar is null", movieDetailsInfoRoot.findViewById(R.id.ratingBar));
         assertNotNull("voteCount is null", movieDetailsInfoRoot.findViewById(R.id.voteCount));
 
-        CircledImageView moreIcon = (CircledImageView) movieDetailsInfoRoot.findViewById(R.id.moreIcon);
-        CircledImageView homeIcon = (CircledImageView) movieDetailsInfoRoot.findViewById(R.id.homeIcon);
-        CircledImageView galleryIcon = (CircledImageView) movieDetailsInfoRoot.findViewById(R.id.galleryIcon);
-        CircledImageView trailerIcon = (CircledImageView) movieDetailsInfoRoot.findViewById(R.id.trailerIcon);
+        FloatingActionButton moreIcon = (FloatingActionButton) movieDetailsInfoRoot.findViewById(R.id.moreIcon);
+        FloatingActionButton homeIcon = (FloatingActionButton) movieDetailsInfoRoot.findViewById(R.id.homeIcon);
+        FloatingActionButton galleryIcon = (FloatingActionButton) movieDetailsInfoRoot.findViewById(R.id.galleryIcon);
+        FloatingActionButton trailerIcon = (FloatingActionButton) movieDetailsInfoRoot.findViewById(R.id.trailerIcon);
 
         assertNotNull("moreIcon is null", moreIcon);
         assertNotNull("homeIcon is null", homeIcon);

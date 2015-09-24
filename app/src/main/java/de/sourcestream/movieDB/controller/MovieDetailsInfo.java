@@ -19,6 +19,7 @@ package de.sourcestream.movieDB.controller;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
@@ -128,6 +129,14 @@ public class MovieDetailsInfo extends Fragment implements AdapterView.OnItemClic
         // Highest Z-index has to be declared last
         moreIcon = (FloatingActionButton) rootView.findViewById(R.id.moreIcon);
         moreIcon.bringToFront();
+
+        float scale = getResources().getDisplayMetrics().density;
+        if (Build.VERSION.SDK_INT >= 21) {
+            homeIcon.setElevation(6 * scale);
+            galleryIcon.setElevation(6 * scale);
+            trailerIcon.setElevation(6 * scale);
+            moreIcon.setElevation(6 * scale);
+        }
 
         movieDetailsSimilarGrid = (GridView) rootView.findViewById(R.id.movieDetailsSimilarGrid);
         similarHolder = rootView.findViewById(R.id.similarHolder);
