@@ -63,9 +63,6 @@
     <!-- Optional permission for reliable local dispatching on non-Google Play devices -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <!-- Hockey stuff starts here -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- Hockey stuff ends here -->
     <application
         android:name="de.sourcestream.movieDB.MovieDB"
         android:allowBackup="true"
@@ -123,9 +120,6 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <!-- Hockey stuff starts here -->
-        <activity android:name="net.hockeyapp.android.UpdateActivity" />
-        <!-- Hockey stuff ends here -->
     </application>
 
 </manifest>

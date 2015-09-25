@@ -84,9 +84,6 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
-import net.hockeyapp.android.CrashManager;
-import net.hockeyapp.android.UpdateManager;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -294,9 +291,6 @@ public class MainActivity extends AppCompatActivity {
 
             // on first time display view for first nav item
             displayView(1);
-
-            // Use hockey module to check for updates
-            checkForUpdates();
 
             // Universal Loader options and configuration.
             DisplayImageOptions options = new DisplayImageOptions.Builder()
@@ -507,40 +501,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-    }
-
-    /**
-     * This method is fired when the activity is paused.
-     * For example if we minimize our app.
-     */
-    @Override
-    protected void onPause() {
-        super.onPause();
-        UpdateManager.unregister();
-    }
-
-    /**
-     * This method is fired when the activity is resumed.
-     */
-    @Override
-    protected void onResume() {
-        super.onResume();
-        checkForCrashes();
-    }
-
-    /**
-     * This method is used by the hockey library to check for crashes.
-     */
-    private void checkForCrashes() {
-        CrashManager.register(this, MovieDB.appId);
-    }
-
-    /**
-     * This method is used by the hockey library to check for updates.
-     */
-    private void checkForUpdates() {
-        // Remove this for store / production builds!
-        UpdateManager.register(this, MovieDB.appId);
     }
 
     /**
