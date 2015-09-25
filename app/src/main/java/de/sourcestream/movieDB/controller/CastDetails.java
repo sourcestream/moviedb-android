@@ -1293,7 +1293,7 @@ public class CastDetails extends Fragment implements ObservableScrollViewCallbac
 
         for (int i = 0; i < iconCount.length; i++) {
             if (iconCount[i] == 1)
-                circledImageViews.get(circledImageViews.size() - 1).setVisibility(View.GONE);
+                circledImageViews.get(circledImageViews.size() - 1).setVisibility(View.INVISIBLE);
             else {
                 FloatingActionButton temp = circledImageViews.get(0);
                 switch (i) {
