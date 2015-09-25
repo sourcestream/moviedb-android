@@ -27,10 +27,10 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.wearable.view.CircledImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,13 +88,13 @@ public class MovieDetails extends Fragment implements ObservableScrollViewCallba
 
     private ProgressBar spinner;
     private int moreIconCheck;
-    private FloatingActionButton moreIcon;
-    private FloatingActionButton homeIcon;
+    private CircledImageView moreIcon;
+    private CircledImageView homeIcon;
     private int homeIconCheck;
     private int galleryIconCheck;
-    private FloatingActionButton galleryIcon;
+    private CircledImageView galleryIcon;
     private int trailerIconCheck;
-    private FloatingActionButton trailerIcon;
+    private CircledImageView trailerIcon;
     private ArrayList<String> trailerList;
     private ArrayList<String> galleryList;
 
@@ -205,26 +205,19 @@ public class MovieDetails extends Fragment implements ObservableScrollViewCallba
             rootView = inflater.inflate(R.layout.moviedetails, container, false);
             spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);
 
-            homeIcon = (FloatingActionButton) rootView.findViewById(R.id.homeIcon);
+            homeIcon = (CircledImageView) rootView.findViewById(R.id.homeIcon);
             homeIcon.bringToFront();
             homeIcon.setVisibility(View.INVISIBLE);
-            galleryIcon = (FloatingActionButton) rootView.findViewById(R.id.galleryIcon);
+            galleryIcon = (CircledImageView) rootView.findViewById(R.id.galleryIcon);
             galleryIcon.bringToFront();
             galleryIcon.setVisibility(View.INVISIBLE);
-            trailerIcon = (FloatingActionButton) rootView.findViewById(R.id.trailerIcon);
+            trailerIcon = (CircledImageView) rootView.findViewById(R.id.trailerIcon);
             trailerIcon.bringToFront();
             trailerIcon.setVisibility(View.INVISIBLE);
 
             // Highest Z-index has to be declared last
-            moreIcon = (FloatingActionButton) rootView.findViewById(R.id.moreIcon);
+            moreIcon = (CircledImageView) rootView.findViewById(R.id.moreIcon);
             moreIcon.bringToFront();
-
-            if (Build.VERSION.SDK_INT >= 21) {
-                homeIcon.setElevation(6 * scale);
-                galleryIcon.setElevation(6 * scale);
-                trailerIcon.setElevation(6 * scale);
-                moreIcon.setElevation(6 * scale);
-            }
         }
         moreIcon.setOnClickListener(onMoreIconClick);
 
@@ -1431,18 +1424,18 @@ public class MovieDetails extends Fragment implements ObservableScrollViewCallba
      * @param trailerIcon the second icon
      * @param galleryIcon the third icon
      */
-    public void adjustIconsPos(FloatingActionButton homeIcon, FloatingActionButton trailerIcon, FloatingActionButton galleryIcon) {
+    public void adjustIconsPos(CircledImageView homeIcon, CircledImageView trailerIcon, CircledImageView galleryIcon) {
         int iconCount[] = {homeIconCheck, trailerIconCheck, galleryIconCheck};
-        ArrayList<FloatingActionButton> circledImageViews = new ArrayList<>();
+        ArrayList<CircledImageView> circledImageViews = new ArrayList<>();
         circledImageViews.add(homeIcon);
         circledImageViews.add(trailerIcon);
         circledImageViews.add(galleryIcon);
 
         for (int i = 0; i < iconCount.length; i++) {
             if (iconCount[i] == 1)
-                circledImageViews.get(circledImageViews.size() - 1).setVisibility(View.GONE);
+                circledImageViews.get(circledImageViews.size() - 1).setVisibility(View.INVISIBLE);
             else {
-                FloatingActionButton temp = circledImageViews.get(0);
+                CircledImageView temp = circledImageViews.get(0);
                 switch (i) {
                     case 0:
                         temp.setOnClickListener(onHomeIconClick);
@@ -1474,13 +1467,13 @@ public class MovieDetails extends Fragment implements ObservableScrollViewCallba
      * @param homeIcon    first icon
      * @param galleryIcon second icon
      */
-    public void showHideImages(int visibility, FloatingActionButton homeIcon, FloatingActionButton trailerIcon, FloatingActionButton galleryIcon) {
+    public void showHideImages(int visibility, CircledImageView homeIcon, CircledImageView trailerIcon, CircledImageView galleryIcon) {
         float dy[] = {0.7f, 56.7f, 112.5f};
         float infoTabDy[] = {-2.4f, 53.5f, 109.25f};
         int currDy = 0;
         int delay = 100;
         int iconCount[] = {homeIconCheck, trailerIconCheck, galleryIconCheck};
-        ArrayList<FloatingActionButton> circledImageViews = new ArrayList<>();
+        ArrayList<CircledImageView> circledImageViews = new ArrayList<>();
         circledImageViews.add(homeIcon);
         circledImageViews.add(trailerIcon);
         circledImageViews.add(galleryIcon);
@@ -1501,7 +1494,7 @@ public class MovieDetails extends Fragment implements ObservableScrollViewCallba
             if (iconCount[i] == 1)
                 circledImageViews.get(circledImageViews.size() - 1).setVisibility(View.INVISIBLE);
             else {
-                FloatingActionButton temp = circledImageViews.get(0);
+                CircledImageView temp = circledImageViews.get(0);
                 if (visibility == View.VISIBLE) {
                     if (currPos == 0)
                         createIconUpAnimation(infoTabDy[currDy], delay);

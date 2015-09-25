@@ -19,10 +19,9 @@ package de.sourcestream.movieDB.controller;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
+import android.support.wearable.view.CircledImageView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -61,9 +60,9 @@ public class TVDetailsInfo extends Fragment implements AdapterView.OnItemClickLi
     private TextView companies;
     private RatingBar ratingBar;
     private TextView voteCount;
-    private FloatingActionButton moreIcon;
-    private FloatingActionButton homeIcon;
-    private FloatingActionButton galleryIcon;
+    private CircledImageView moreIcon;
+    private CircledImageView homeIcon;
+    private CircledImageView galleryIcon;
     private ObservableParallaxScrollView scrollView;
     private GridView tvDetailsSimilarGrid;
     private ArrayList<SimilarModel> similarList;
@@ -118,25 +117,17 @@ public class TVDetailsInfo extends Fragment implements AdapterView.OnItemClickLi
         voteCount = (TextView) rootView.findViewById(R.id.voteCount);
 
 
-        homeIcon = (FloatingActionButton) rootView.findViewById(R.id.homeIcon);
-        homeIcon.setVisibility(View.GONE);
+        homeIcon = (CircledImageView) rootView.findViewById(R.id.homeIcon);
+        homeIcon.setVisibility(View.INVISIBLE);
         homeIcon.bringToFront();
 
-        galleryIcon = (FloatingActionButton) rootView.findViewById(R.id.galleryIcon);
-        galleryIcon.setVisibility(View.GONE);
+        galleryIcon = (CircledImageView) rootView.findViewById(R.id.galleryIcon);
+        galleryIcon.setVisibility(View.INVISIBLE);
         galleryIcon.bringToFront();
 
         // Highest Z-index has to be declared last
-        moreIcon = (FloatingActionButton) rootView.findViewById(R.id.moreIcon);
+        moreIcon = (CircledImageView) rootView.findViewById(R.id.moreIcon);
         moreIcon.bringToFront();
-
-        float scale = getResources().getDisplayMetrics().density;
-        if (Build.VERSION.SDK_INT >= 21) {
-            homeIcon.setElevation(6 * scale);
-            galleryIcon.setElevation(6 * scale);
-            moreIcon.setElevation(6 * scale);
-        }
-
         scrollView = (ObservableParallaxScrollView) rootView.findViewById(R.id.tvdetailsinfo);
 
         tvDetailsSimilarGrid = (GridView) rootView.findViewById(R.id.tvDetailsSimilarGrid);
@@ -245,15 +236,15 @@ public class TVDetailsInfo extends Fragment implements AdapterView.OnItemClickLi
         return voteCount;
     }
 
-    public FloatingActionButton getMoreIcon() {
+    public CircledImageView getMoreIcon() {
         return moreIcon;
     }
 
-    public FloatingActionButton getHomeIcon() {
+    public CircledImageView getHomeIcon() {
         return homeIcon;
     }
 
-    public FloatingActionButton getGalleryIcon() {
+    public CircledImageView getGalleryIcon() {
         return galleryIcon;
     }
 

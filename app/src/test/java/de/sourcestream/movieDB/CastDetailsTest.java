@@ -18,8 +18,8 @@ package de.sourcestream.movieDB;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
+import android.support.wearable.view.CircledImageView;
 import android.test.InstrumentationTestCase;
 import android.view.View;
 
@@ -43,9 +43,9 @@ public class CastDetailsTest extends InstrumentationTestCase {
     private MainActivity activity;
     private CastDetails castDetailsFragment;
     private View castDetailsFragmentView;
-    private FloatingActionButton moreIcon;
-    private FloatingActionButton homeIcon;
-    private FloatingActionButton galleryIcon;
+    private CircledImageView moreIcon;
+    private CircledImageView homeIcon;
+    private CircledImageView galleryIcon;
 
 
     /**
@@ -63,9 +63,9 @@ public class CastDetailsTest extends InstrumentationTestCase {
         manager.beginTransaction().add(castDetailsFragment, FRAGMENT_TAG).commit();
 
         castDetailsFragmentView = castDetailsFragment.getView();
-        moreIcon = (FloatingActionButton) castDetailsFragmentView.findViewById(R.id.moreIcon);
-        homeIcon = (FloatingActionButton) castDetailsFragmentView.findViewById(R.id.homeIcon);
-        galleryIcon = (FloatingActionButton) castDetailsFragmentView.findViewById(R.id.galleryIcon);
+        moreIcon = (CircledImageView) castDetailsFragmentView.findViewById(R.id.moreIcon);
+        homeIcon = (CircledImageView) castDetailsFragmentView.findViewById(R.id.homeIcon);
+        galleryIcon = (CircledImageView) castDetailsFragmentView.findViewById(R.id.galleryIcon);
 
     }
 
@@ -124,15 +124,15 @@ public class CastDetailsTest extends InstrumentationTestCase {
         assertNotNull("showMoreButton is null", castDetailsInfoRoot.findViewById(R.id.showMoreButton));
         assertNotNull("detailsLayout is null", castDetailsInfoRoot.findViewById(R.id.detailsLayout));
 
-        FloatingActionButton moreIcon = (FloatingActionButton) castDetailsInfoRoot.findViewById(R.id.moreIcon);
-        FloatingActionButton homeIcon = (FloatingActionButton) castDetailsInfoRoot.findViewById(R.id.homeIcon);
-        FloatingActionButton galleryIcon = (FloatingActionButton) castDetailsInfoRoot.findViewById(R.id.galleryIcon);
+        CircledImageView moreIcon = (CircledImageView) castDetailsInfoRoot.findViewById(R.id.moreIcon);
+        CircledImageView homeIcon = (CircledImageView) castDetailsInfoRoot.findViewById(R.id.homeIcon);
+        CircledImageView galleryIcon = (CircledImageView) castDetailsInfoRoot.findViewById(R.id.galleryIcon);
 
         assertNotNull("moreIcon is null", moreIcon);
         assertNotNull("homeIcon is null", homeIcon);
         assertNotNull("galleryIcon is null", galleryIcon);
 
-        int expected = View.GONE;
+        int expected = View.INVISIBLE;
         assertEquals("moreIcon visibility is different!", View.VISIBLE, moreIcon.getVisibility());
         assertEquals("homeIcon visibility is different!", expected, homeIcon.getVisibility());
         assertEquals("galleryIcon visibility is different!", expected, galleryIcon.getVisibility());
