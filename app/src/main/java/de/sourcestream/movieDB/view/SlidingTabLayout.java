@@ -201,7 +201,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         int height = size.y;
         // special case for 7' inch tablets
         // if we leave padding to 16 the text title on the viewPager will be cut
-        if (!phone && width == 1024 && height == 600)
+        if (!phone && ((width == 1024 && height == 600) || (height == 1024 && width == 600)))
             TAB_VIEW_PADDING_DIPS = 14;
 
 
