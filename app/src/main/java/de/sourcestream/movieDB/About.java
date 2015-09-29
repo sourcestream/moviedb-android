@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,7 @@ public class About extends Fragment implements View.OnClickListener {
         TextView aboutSupportMail = (TextView) rootView.findViewById(R.id.aboutSupportMail);
         aboutSupportMail.setOnClickListener(this);
         res = getResources();
+        getActivity().getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.aboutBackground));
         return rootView;
     }
 
@@ -87,6 +89,7 @@ public class About extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        getActivity().getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.background_material_light));
     }
 
 }

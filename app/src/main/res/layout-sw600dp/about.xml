@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
    Copyright 2015 sourcestream GmbH
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +14,7 @@
    limitations under the License.
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ext="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/aboutBackground"
@@ -38,7 +38,7 @@
             android:layout_marginTop="5dp"
             android:text="@string/aboutApp"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
             android:paddingRight="25dp"
             android:text="@string/TMDbText"
             android:textColor="@color/aboutText"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
 
         <ImageView
@@ -59,21 +59,27 @@
             android:src="@drawable/tmdb"
             android:tag="http://themoviedb.org" />
 
-        <TextView
+        <com.bluejamesbond.text.DocumentView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
-            android:text="@string/TMDbLegalNotice"
-            android:textColor="@color/aboutText"
-            android:textSize="16sp" />
+            ext:documentView_antialias="true"
+            ext:documentView_cacheConfig="auto_quality"
+            ext:documentView_insetPaddingLeft="25dp"
+            ext:documentView_insetPaddingRight="25dp"
+            ext:documentView_reverse="false"
+            ext:documentView_text="@string/TMDbLegalNotice"
+            ext:documentView_textAlignment="justified"
+            ext:documentView_textColor="@color/aboutText"
+            ext:documentView_textFormat="plain"
+            ext:documentView_textSize="14sp"
+            ext:documentView_textSubPixel="true" />
 
         <ImageView
             android:id="@+id/sourcestream"
             android:layout_width="360dp"
             android:layout_height="100dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:src="@drawable/sourcestream"
             android:tag="http://sourcestream.de/" />
 
@@ -88,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/aboutSupport"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/aboutSupportMail"
@@ -96,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/aboutSupportMail"
                 android:textColor="@color/aboutMail"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <TextView
@@ -104,7 +110,7 @@
             android:layout_height="wrap_content"
             android:text="@string/aboutSourcestream"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -112,6 +118,6 @@
             android:layout_marginBottom="15dp"
             android:text="@string/aboutWebSite"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 </ScrollView>
