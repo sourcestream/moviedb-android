@@ -7,7 +7,7 @@ android {
         applicationId "de.sourcestream.movieDB"
         minSdkVersion 17
         targetSdkVersion 23
-        versionCode 110
+        versionCode 111
         versionName "1.0.5"
     }
     buildTypes {
