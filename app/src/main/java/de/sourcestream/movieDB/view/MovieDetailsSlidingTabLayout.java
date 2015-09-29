@@ -16,13 +16,16 @@
 
 package de.sourcestream.movieDB.view;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,7 +73,7 @@ public class MovieDetailsSlidingTabLayout extends HorizontalScrollView {
     }
 
     private static final int TITLE_OFFSET_DIPS = 24;
-    private static final int TAB_VIEW_PADDING_DIPS = 16;
+    private static int TAB_VIEW_PADDING_DIPS = 16;
     private static final int TAB_VIEW_TEXT_SIZE_SP = 14;
 
     private int mTitleOffset;
@@ -191,6 +194,17 @@ public class MovieDetailsSlidingTabLayout extends HorizontalScrollView {
             // If we're running on ICS or newer, enable all-caps to match the Action Bar tab style
             textView.setAllCaps(true);
         }
+
+        boolean phone = getResources().getBoolean(R.bool.portrait_only);
+        Display display = ((Activity) context).getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getRealSize(size);
+        int width = size.x;
+        int height = size.y;
+        // special case for 7' inch tablets
+        // if we leave padding to 16 the text title on the viewPager will be cut
+        if (!phone && width == 1024 && height == 600)
+            TAB_VIEW_PADDING_DIPS = 14;
 
         int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
         textView.setPadding(padding, padding, padding, padding);

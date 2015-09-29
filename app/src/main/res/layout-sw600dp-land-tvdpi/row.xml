@@ -24,13 +24,13 @@
     <ImageView
         android:id="@+id/posterPath"
         android:layout_width="fill_parent"
-        android:layout_height="280dp"
+        android:layout_height="330dp"
         android:scaleType="fitXY"
         android:src="@drawable/placeholder_default" />
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="85dp"
+        android:layout_height="75dp"
         android:layout_gravity="center"
         android:gravity="top|center"
         android:orientation="vertical">
